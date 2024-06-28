@@ -1,5 +1,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
-.font-rubik{
+.font-rubik {
     font-family: "Rubik", sans-serif;
+}
+
+.news-bg {
+    background-image: url('./images/news/bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 560px;
+    width: 100%;
+}
+
+/* responsive  */
+
+
+@media only screen and (max-width: 1023.9px) {
+    .news-bg {
+        height: 100%;
+        width: 100%;
+        padding: 560px 0 50px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .news-bg {
+        height: 100%;
+        width: 100%;
+        padding: 460px 0 50px;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .news-bg {
+        height: 100%;
+        width: 100%;
+        padding: 240px 0 50px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .news-bg {
+        height: 100%;
+        width: 100%;
+        padding: 200px 0 50px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .news-bg {
+        height: 100%;
+        width: 100%;
+        padding: 155px 0 50px;
+    }
 }

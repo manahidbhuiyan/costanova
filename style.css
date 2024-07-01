@@ -4,71 +4,6 @@
   font-family: "Rubik", sans-serif;
 }
 
-.news-bg {
-  background-image: url("./images/news/bg.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  height: 560px;
-  width: 100%;
-}
-
-/* responsive  */
-
-@media only screen and (max-width: 1023.9px) {
-  .news-bg {
-    height: 100%;
-    width: 100%;
-    padding: 560px 0 50px;
-  }
-}
-
-@media only screen and (max-width: 767.9px) {
-  .news-bg {
-    height: 100%;
-    width: 100%;
-    padding: 460px 0 50px;
-  }
-  .mobile {
-    position: absolute;
-  }
-}
-
-@media only screen and (max-width: 425px) {
-  .news-bg {
-    height: 100%;
-    width: 100%;
-    padding: 240px 0 50px;
-  }
-  .mobile {
-    position: absolute;
-  }
-}
-
-@media only screen and (max-width: 375px) {
-  .news-bg {
-    height: 100%;
-    width: 100%;
-    padding: 200px 0 50px;
-  }
-}
-
-@media only screen and (max-width: 320px) {
-  .news-bg {
-    height: 100%;
-    width: 100%;
-    padding: 155px 0 50px;
-  }
-}
-
-.selected {
-  background-color: #2b59ff13;
-}
-
-label.selected {
-  background-color: #2b59ff00;
-}
-
 .navbar {
   position: sticky;
   top: 0;
@@ -82,13 +17,198 @@ label.selected {
   background-color: white;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .navbar.scrolled .language {
   color: black;
 }
+
 .navbar.fixed {
   position: fixed;
 }
 
 .navbar #logo {
   transition: src 0.3s ease;
+}
+
+.selected {
+  background-color: #2b59ff13;
+}
+
+label.selected {
+  background-color: #2b59ff00;
+}
+
+
+.news-bg {
+  background-image: url("./images/news/bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  height: 560px;
+  width: 100%;
+}
+
+/* responsive  */
+
+@media only screen and (max-width: 1023.9px) {
+  .news-bg {
+    margin-bottom: 2000px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .news-bg {
+    margin-bottom: 1950px;
+  }
+}
+
+@media only screen and (max-width: 975px) {
+  .news-bg {
+    margin-bottom: 1850px;
+  }
+}
+
+@media only screen and (max-width: 925px) {
+  .news-bg {
+    margin-bottom: 1800px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .news-bg {
+    margin-bottom: 1750px;
+  }
+}
+
+@media only screen and (max-width: 875px) {
+  .news-bg {
+    margin-bottom: 1700px;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .news-bg {
+    margin-bottom: 1650px;
+  }
+}
+
+@media only screen and (max-width: 825px) {
+  .news-bg {
+    margin-bottom: 1600px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .news-bg {
+    margin-bottom: 1550px;
+  }
+}
+
+@media only screen and (max-width: 775px) {
+  .news-bg {
+    margin-bottom: 1500px;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .news-bg {
+    margin-bottom: 1450px;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .news-bg {
+    margin-bottom: 1400px;
+  }
+}
+
+@media only screen and (max-width: 690px) {
+  .news-bg {
+    margin-bottom: 1350px;
+  }
+}
+
+@media only screen and (max-width: 670px) {
+  .news-bg {
+    margin-bottom: 1300px;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .news-bg {
+    margin-bottom: 1250px;
+  }
+}
+
+@media only screen and (max-width: 610px) {
+  .news-bg {
+    margin-bottom: 1200px;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .news-bg {
+    margin-bottom: 1150px;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .news-bg {
+    margin-bottom: 1100px;
+  }
+}
+
+@media only screen and (max-width: 530px) {
+  .news-bg {
+    margin-bottom: 1050px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .news-bg {
+    margin-bottom: 1000px;
+  }
+}
+
+@media only screen and (max-width: 475px) {
+  .news-bg {
+    margin-bottom: 950px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .news-bg {
+    margin-bottom: 900px;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .news-bg {
+    margin-bottom: 850px;
+  }
+}
+
+@media only screen and (max-width: 395px) {
+  .news-bg {
+    margin-bottom: 800px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .news-bg {
+    margin-bottom: 750px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .news-bg {
+    margin-bottom: 700px;
+  }
+}
+
+@media only screen and (max-width: 767.9px) {
+
+  .mobile {
+    position: absolute;
+  }
 }

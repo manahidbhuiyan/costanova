@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Costanova property list</title>
+  <!-- custom css  -->
+  <link rel="stylesheet" href="./style/propertyList.css" />
+  <!-- tailwind cdn  -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    [x-cloak] {
+      display: none;
+    }
+
+    /* Custom CSS for the radio button */
+    input[type="radio"] {
+      appearance: none;
+      background-color: #fff;
+      color: currentColor;
+      width: 20px;
+      height: 20px;
+      border: 1px solid #CACACA;
+      border-radius: 50%;
+      display: grid;
+      place-content: center;
+      position: relative;
+    }
+
+    input[type="radio"]::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      position: absolute;
+      top: 50%;
+      /* Centering the before element */
+      left: 50%;
+      /* Centering the before element */
+      border-radius: 50%;
+      transform: scale(0) translate(-50%, -50%);
+      transition: 120ms transform ease-in-out;
+      box-shadow: inset 8px 8px #2B59FF;
+    }
+
+    input[type="radio"]:checked::before {
+      transform: scale(1) translate(-50%, -50%);
+    }
+
+    input[type="radio"]:checked {
+      border: 1px solid #2B59FF;
+    }
+
+    /* range slider */
+    .slider-container {
+      position: relative;
+      width: 100%;
+      height: 50px;
+    }
+
+    .range-slider {
+      position: absolute;
+      width: 100%;
+      height: 5px;
+      background: #E3DBDB;
+      border-radius: 5px;
+    }
+
+    .range-slider input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 5px;
+      background: transparent;
+      position: absolute;
+      top: -2.5px;
+      pointer-events: none;
+    }
+
+    .range-slider input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      cursor: pointer;
+      position: relative;
+      pointer-events: auto;
+      z-index: 111;
+      border: 1px solid #E3DBDB;
+    }
+
+    .range-slider input[type="range"]:nth-child(2)::-webkit-slider-thumb {
+      z-index: 3;
+    }
+
+    .range-slider input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 1px solid #E3DBDB;
+    }
+
+    .range-slider input[type="range"]::-ms-thumb {
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 1px solid #E3DBDB;
+    }
+
+    .range-slider .range-track {
+      position: absolute;
+      height: 5px;
+      background: #2B59FF;
+      border-radius: 5px;
+      z-index: 1;
+    }
+
+    /* checkbox */
+    .custom-checkbox {
+      width: 20px;
+      height: 20px;
+      border: 1px solid #E3DBDB;
+      border-radius: 4px;
+      appearance: none;
+      display: grid;
+      place-content: center;
+      position: relative;
+    }
+
+    .custom-checkbox:checked {
+      background-color: #2B59FF;
+      border-color: #2B59FF;
+    }
+
+    .custom-checkbox:checked::before {
+      content: '';
+      width: 12.5px;
+      height: 7.5px;
+      border: solid #FFFFFF;
+      border-width: 0 0 1.5px 1.5px;
+      transform: rotate(-45deg);
+      position: absolute;
+      top: 4.75px;
+      left: 2.75px;
+    }
+
+    /*  */
+    .custom-shadow {
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1),
+        0 6px 6px rgba(0, 0, 0, 0.09),
+        0 14px 9px rgba(0, 0, 0, 0.05),
+        0 25px 10px rgba(0, 0, 0, 0.01),
+        0 40px 11px rgba(0, 0, 0, 0)
+    }
+  </style>
+</head>
+
+<body>
+  <header class=" w-full select-none" style="background-position: center">
+    <!-- Navbar -->
+    <div class="navbar text-black sticky top-0 bg-white z-50 border-b md:border-0 md:shadow-lg">
+      <div class="border-b w-full border-[#ffffff4f]">
+        <div class="max-w-[1340px] h-[80px] px-5 lg:px-3 mx-auto font-rubik flex justify-between items-center">
+          <div class="flex gap-4 justify-start items-center">
+            <!-- navbar bar -->
+            <div class="md:hidden">
+              <i id="bar-icon" class="fa-solid fa-bars cursor-pointer text-black text-xl mt-2"></i>
+            </div>
+            <!-- Logo -->
+            <a href="index.html">
+              <img id="logo" class="black-logo" src="./images/banner/logo-black.png" alt="Logo" />
+            </a>
+          </div>
+
+          <div id="menu"
+            class="menu-item hidden md:flex w-full md:w-auto flex-col md:flex-row items-center gap-5 shadow md:shadow-none">
+            <!-- Language -->
+            <div class="relative text-[16px] text-black ">
+              <div class="flex justify-start items-center font-medium cursor-pointer gap-2 uppercase"
+                id="languageSelector">
+                <span class="language">EN</span>
+                <i id="languagearrow" class="fa-solid fa-chevron-down text-black"></i>
+              </div>
+              <div id="languageOptions"
+                class="rounded-[4px] left-0 top-[50px] absolute w-[194px] p-[15px] space-y-[5px] bg-white shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] hidden z-10">
+                <div
+                  class="flex rounded-[8px] justify-start items-center gap-[15px] text-black hover:bg-[#ffd63149] p-3 languageOption font-medium cursor-pointer bg-[#ffd63149]"
+                  data-lang="EN">
+                  <img class="w-[24px] h-[24px]" src="./images/banner/emojione_flag-for-united-kingdom.svg"
+                    alt="united-kingdom" />
+                  <span class="text-[14px]">English</span>
+                </div>
+                <div
+                  class="flex rounded-[8px] justify-start items-center gap-[15px] text-black hover:bg-[#ffd63149] p-3 languageOption font-medium cursor-pointer"
+                  data-lang="DE">
+                  <img class="w-[24px] h-[24px]" src="./images/banner/emojione_flag-for-germany.svg"
+                    alt="united-kingdom" />
+                  <span class="text-[14px]">German</span>
+                </div>
+                <div
+                  class="flex rounded-[8px] justify-start items-center gap-[15px] text-black hover:bg-[#ffd63149] p-3 languageOption font-medium cursor-pointer"
+                  data-lang="ES">
+                  <img class="w-[24px] h-[24px]" src="./images/banner/emojione_flag-for-spain.svg"
+                    alt="united-kingdom" />
+                  <span class="text-[14px]">Spanish</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Profile button -->
+            <div class="relative text-[16px] text-black">
+              <div class="flex justify-start items-center font-medium cursor-pointer gap-2 capitalize"
+                id="profileSelector">
+                <span class="language">Hello William</span>
+                <img class="w-8 h-8 sm:w-[50px] sm:h-[50px]" src="./images/property-image/Mask group.png" alt="">
+                <i id="profileArrow" class="fa-solid fa-chevron-down text-black"></i>
+              </div>
+              <div id="profileOptions"
+                class="rounded-[4px] left-0 top-[38px] sm:top-[60px] absolute w-[194px] p-[15px] space-y-[5px] bg-white shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] hidden">
+                <div
+                  class="flex rounded-[8px] justify-start items-center gap-[15px] text-black hover:bg-[#ffd63149] p-3 profileOption font-medium cursor-pointer bg-[#ffd63149]"
+                  data-lang="EN">
+                  <span class="text-[14px]">Profile</span>
+                </div>
+                <div
+                  class="flex rounded-[8px] justify-start items-center gap-[15px] text-black hover:bg-[#ffd63149] p-3 profileOption font-medium cursor-pointer"
+                  data-lang="DE">
+                  <span class="text-[14px]">Edit Profile</span>
+                </div>
+                <div
+                  class="flex rounded-[8px] justify-start items-center gap-[15px] text-black hover:bg-[#ffd63149] p-3 profileOption font-medium cursor-pointer"
+                  data-lang="ES">
+                  <span class="text-[14px]">Sign In</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- small device button -->
+          <div class="flex justify-end gap-4 items-center md:hidden">
+            <a href="#" class="text-sm font-normal text-[#1E1E1E]">Login</a>
+            <a href="#" class="w-[71px] rounded-lg px-[10px] py-2 bg-[#1E1E1E] text-white text-sm font-normal">Sign
+              Up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="max-w-[1340px] lg:px-3 mx-auto font-rubik flex justify-between gap-3 lg:gap-5 mt-5 ">
+    <!-- sidebar or filter area -->
+    <section id="sidebar"
+      class="hidden md:block md:w-[30%] lg:w-[25%] w-full absolute md:relative left-0 mt-[-20px] md:mt-0 z-10 bg-white pb-2 shadow-lg md:shadow-transparent">
+      <!-- top bar -->
+      <div class="hidden md:flex justify-between p-4 border-t border-r border-b">
+        <div class="flex justify-start gap-3 items-center">
+          <img class="w-4 h-4" src="./images/sidebar/setting-4.png" alt="">
+          <span class="text-sm font-medium leading-5 text-[#1E1E1E]">Filter</span>
+        </div>
+        <a href="#" class="text-sm font-medium leading-5 text-[#2B59FF]">Clear All</a>
+      </div>
+
+      <!-- price filter -->
+      <div class="md:max-w-md md:mx-auto w-full p-5 bg-white md:border-r border-b rounded-none">
+        <div x-data="{ open: false, minOpen: false, maxOpen: false, minPrice: '', maxPrice: '' }">
+          <div class="flex items-center justify-between cursor-pointer" @click="open = !open">
+            <span class="text-base font-medium text-[#1E1E1E] flex justify-start items-center gap-2">
+              <img class="w-5 h-5" src="./images/sidebar/currency-circle.png" alt=""> Price</span>
+            <svg :class="{ 'transform rotate-180': open }"
+              class="w-6 h-6 text-gray-700 transition-transform duration-300" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+          <div x-show="open" x-cloak class="mt-4">
+            <div class="flex justify-between md:items-start lg:items-center md:flex-col md:gap-3 lg:flex-row">
+              <div class="relative">
+                <button @click="minOpen = !minOpen; maxOpen = false;"
+                  class="flex items-center justify-between w-[113px] lg:w-[80px] xl:w-[113px] px-[10px] py-[5px] bg-white bg-opacity-20 border border-[#E3DBDB] rounded-[5px] focus:outline-none">
+                  <span class="text-[##E3DBDB]" x-text="minPrice ? minPrice : '$0'"></span>
+                  <svg :class="{ 'transform rotate-180': minOpen }"
+                    class="w-4 h-4 ml-2 transition-transform duration-300" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+                <div class="absolute left-0 w-full mt-2 bg-white border border-gray-300 rounded-lg" x-show="minOpen"
+                  x-cloak>
+                  <a href="#" class="flex items-center px-4 lg:px-2 xl:px-4 py-2 text-sm font-normal text-[#1E1E1E]"
+                    @click="minPrice = '1000'; minOpen = false;">
+                    <img src="./images/sidebar/currency.png" alt="icon" class="w-4 h-4 mr-2"> 1000
+                  </a>
+                  <a href="#" class="flex items-center px-4 lg:px-2 xl:px-4 py-2 text-sm font-normal text-[#1E1E1E]"
+                    @click="minPrice = '2000'; minOpen = false;">
+                    <img src="./images/sidebar/currency.png" alt="icon" class="w-4 h-4 mr-2"> 2000
+                  </a>
+                  <a href="#" class="flex items-center px-4 lg:px-2 xl:px-4 py-2 text-sm font-normal text-[#1E1E1E]"
+                    @click="minPrice = '3000'; minOpen = false;">
+                    <img src="./images/sidebar/currency.png" alt="icon" class="w-4 h-4 mr-2"> 3000
+                  </a>
+                </div>
+              </div>
+              <span class="text-sm font-medium text-gray-500 md:pl-[10%] lg:p-0">until</span>
+              <div class="relative">
+                <button @click="maxOpen = !maxOpen; minOpen = false;"
+                  class="flex items-center justify-between w-[113px] lg:w-[90px] xl:w-[113px] px-[10px] py-[5px] bg-white bg-opacity-20 border border-[#E3DBDB] rounded-[5px] focus:outline-none">
+                  <span class="text-[##E3DBDB]" x-text="maxPrice ? maxPrice : '100k'"></span>
+                  <svg :class="{ 'transform rotate-180': maxOpen }"
+                    class="w-4 h-4 ml-2 transition-transform duration-300" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+                <div class="absolute right-0 w-full mt-2 bg-white border border-gray-300 rounded-lg" x-show="maxOpen"
+                  x-cloak>
+                  <a href="#" class="flex items-center px-4 lg:px-2 xl:px-4 py-2 text-sm font-normal text-[#1E1E1E]"
+                    @click="maxPrice = '1000'; maxOpen = false;">
+                    <img src="./images/sidebar/currency.png" alt="icon" class="w-4 h-4 mr-2"> 1000
+                  </a>
+                  <a href="#" class="flex items-center px-4 lg:px-2 xl:px-4 py-2 text-sm font-normal text-[#1E1E1E]"
+                    @click="maxPrice = '2000'; maxOpen = false;">
+                    <img src="./images/sidebar/currency.png" alt="icon" class="w-4 h-4 mr-2"> 2000
+                  </a>
+                  <a href="#" class="flex items-center px-4 lg:px-2 xl:px-4 py-2 text-sm font-normal text-[#1E1E1E]"
+                    @click="maxPrice = '3000'; maxOpen = false;">
+                    <img src="./images/sidebar/currency.png" alt="icon" class="w-4 h-4 mr-2"> 3000
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- property Type -->
+      <div class="md:max-w-md md:mx-auto w-full p-5 bg-white md:border-r border-b rounded-none">
+        <div x-data="{ open: false, selected: 'Option 1' }">
+          <div class="flex items-center justify-between cursor-pointer" @click="open = !open">
+            <span class="text-base font-medium text-[#1E1E1E] flex justify-start items-center gap-2">
+              <img class="w-5 h-5" src="./images/sidebar/type.png" alt=""> Property Type</span>
+            <svg :class="{ 'transform rotate-180': open }"
+              class="w-6 h-6 text-gray-700 transition-transform duration-300" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+          <!-- inner area -->
+          <div x-show="open" x-cloak class="mt-4 flex flex-wrap gap-2 items-center">
+            <button @click="selected = 'Option 1'"
+              :class="{'bg-[#1E1E1E] text-white': selected === 'Option 1', 'bg-white text-[#1E1E1E]': selected !== 'Option 1'}"
+              class="w-[125px] h-[45px] rounded-[6px] border border-[#D8D8D8] p-[10px_20px] gap-[10px] text-sm font-normal">Residential</button>
+            <button @click="selected = 'Option 2'"
+              :class="{'bg-[#1E1E1E] text-white': selected === 'Option 2', 'bg-white text-[#1E1E1E]': selected !== 'Option 2'}"
+              class="w-[125px] h-[45px] rounded-[6px] border border-[#D8D8D8] p-[10px_20px] gap-[10px] text-sm font-normal">Apartment</button>
+            <button @click="selected = 'Option 3'"
+              :class="{'bg-[#1E1E1E] text-white': selected === 'Option 3', 'bg-white text-[#1E1E1E]': selected !== 'Option 3'}"
+              class="w-[125px] h-[45px] rounded-[6px] border border-[#D8D8D8] p-[10px_20px] gap-[10px] text-sm font-normal">Parking</button>
+            <button @click="selected = 'Option 4'"
+              :class="{'bg-[#1E1E1E] text-white': selected === 'Option 4', 'bg-white text-[#1E1E1E]': selected !== 'Option 4'}"
+              class="w-[125px] h-[45px] rounded-[6px] border border-[#D8D8D8] p-[10px_20px] gap-[10px] text-sm font-normal">Building
+              Plot</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Published Radio area -->
+      <div class="md:max-w-md md:mx-auto w-full p-5 bg-white md:border-r border-b rounded-none">
+        <div x-data="{ open: false }">
+          <div class="flex items-center justify-between cursor-pointer" @click="open = !open">
+            <span class="text-base font-medium text-[#1E1E1E] flex justify-start items-center gap-2">
+              <img class="w-5 h-5" src="./images/sidebar/calendar.svg" alt=""> Published Since</span>
+            <svg :class="{ 'transform rotate-180': open }"
+              class="w-6 h-6 text-gray-700 transition-transform duration-300" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+          <!-- inner area -->
+          <div x-show="open" x-cloak class="mt-4">
+            <div class="flex items-center mb-4">
+              <input checked id="default-radio-1" type="radio" value="" name="default-radio"
+                class="w-4 h-4 text-[#2B59FF] bg-white border-[#CACACA] focus:ring-[#2B59FF] cursor-pointer">
+              <label for="default-radio-1" class="ms-2 text-sm font-normal text-[#4A4A4A]">No preference</label>
+            </div>
+            <div class="flex items-center mb-4">
+              <input id="default-radio-2" type="radio" value="" name="default-radio"
+                class="w-4 h-4 text-[#2B59FF] bg-white border-[#CACACA] focus:ring-[#2B59FF] cursor-pointer">
+              <label for="default-radio-2" class="ms-2 text-sm font-normal text-[#4A4A4A]">Today</label>
+            </div>
+            <div class="flex items-center mb-4">
+              <input id="default-radio-3" type="radio" value="" name="default-radio"
+                class="w-4 h-4 text-[#2B59FF] bg-white border-[#CACACA] focus:ring-[#2B59FF] cursor-pointer">
+              <label for="default-radio-3" class="ms-2 text-sm font-normal text-[#4A4A4A]">3 Days</label>
+            </div>
+            <div class="flex items-center mb-4">
+              <input id="default-radio-4" type="radio" value="" name="default-radio"
+                class="w-4 h-4 text-[#2B59FF] bg-white border-[#CACACA] focus:ring-[#2B59FF] cursor-pointer">
+              <label for="default-radio-4" class="ms-2 text-sm font-normal text-[#4A4A4A]">5 Days</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Built Size Filter -->
+      <div class="md:max-w-md md:mx-auto w-full p-5 bg-white md:border-r border-b rounded-none">
+        <div x-data="rangeSlider()">
+          <div class="flex items-center justify-between cursor-pointer" @click="open = !open">
+            <span class="text-base font-medium text-[#1E1E1E] flex justify-start items-center gap-2">
+              <img class="w-5 h-5" src="./images/sidebar/two-angle.png" alt=""> Built Size</span>
+            <svg :class="{ 'transform rotate-180': open }"
+              class="w-6 h-6 text-gray-700 transition-transform duration-300" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+          <div x-show="open" x-cloak class="mt-4 flex flex-col justify-center items-center">
+            <div
+              class="range-values flex justify-between md:flex-col md:gap-3 lg:flex-row mb-4 w-[206px] gap-[10px] mx-auto md:items-start lg:items-center">
+              <input type="number" x-model.number="minSize" @input="validateInput('min')" min="0" max="10000"
+                class="w-[77px] px-[10px] py-[5px] bg-white bg-opacity-20 border border-[#E3DBDB] rounded-[5px] focus:outline-none text-[13px] text-[#1E1E1E]"
+                placeholder="0m">
+              <span class="text-sm font-normal text-[1E1E1E] items-center md:pl-[10%] lg:p-0">until</span>
+              <input type="number" x-model.number="maxSize" @input="validateInput('max')" min="0" max="10000"
+                class="w-[77px] px-[10px] py-[5px] bg-white bg-opacity-20 border border-[#E3DBDB] rounded-[5px] focus:outline-none text-[13px] text-[#1E1E1E]"
+                placeholder="1000m">
+            </div>
+            <div class="slider-container">
+              <div class="range-slider">
+                <div class="range-track" x-bind:style="{ left: minSize / 100 + '%', right: 100 - maxSize / 100 + '%' }">
+                </div>
+                <input type="range" x-model="minSize" min="0" max="10000" step="1" @input="validateInput('min')"
+                  class="pointer-events-auto">
+                <input type="range" x-model="maxSize" min="0" max="10000" step="1" @input="validateInput('max')"
+                  class="pointer-events-auto">
+                <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">0m</span>
+                <span
+                  class="text-sm text-gray-500 dark:text-gray-400 absolute start-1/2 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">5000m</span>
+                <span class="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">10000m</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- plot size -->
+      <div class="md:max-w-md md:mx-auto w-full p-5 bg-white md:border-r border-b rounded-none">
+        <div x-data="plotSizeSlider()">
+          <div class="flex items-center justify-between cursor-pointer" @click="open = !open">
+            <span class="text-base font-medium text-[#1E1E1E] flex justify-start items-center gap-2">
+              <img class="w-5 h-5" src="./images/sidebar/four-angle.png" alt=""> Plot Size</span>
+            <svg :class="{ 'transform rotate-180': open }"
+              class="w-6 h-6 text-gray-700 transition-transform duration-300" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+          <div x-show="open" x-cloak class="mt-4 flex flex-col justify-center items-center">
+            <div
+              class="range-values flex justify-between md:flex-col md:gap-3 lg:flex-row mb-4 w-[206px] gap-[10px] mx-auto md:items-start lg:items-center">
+              <input type="number" x-model.number="minPlotSize" @input="validatePlotInput('min')" min="0" max="10000"
+                class="w-[77px] text-center px-[10px] py-[5px] bg-white bg-opacity-20 border border-[#E3DBDB] rounded-[5px] focus:outline-none text-[13px] text-[#1E1E1E]"
+                placeholder="0m">
+              <span class="text-sm font-normal text-[1E1E1E] items-center md:pl-[10%] lg:p-0">until</span>
+              <input type="number" x-model.number="maxPlotSize" @input="validatePlotInput('max')" min="0" max="10000"
+                class="w-[77px] text-center px-[10px] py-[5px] bg-white bg-opacity-20 border border-[#E3DBDB] rounded-[5px] focus:outline-none text-[13px] text-[#1E1E1E]"
+                placeholder="10000m">
+            </div>
+            <div class="slider-container">
+              <div class="range-slider">
+                <div class="range-track"
+                  x-bind:style="{ left: minPlotSize / 100 + '%', right: 100 - maxPlotSize / 100 + '%' }"></div>
+                <input type="range" x-model="minPlotSize" min="0" max="10000" step="1" @input="validatePlotInput('min')"
+                  class="pointer-events-auto">
+                <input type="range" x-model="maxPlotSize" min="0" max="10000" step="1" @input="validatePlotInput('max')"
+                  class="pointer-events-auto">
+                <span class="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">0m</span>
+                <span
+                  class="text-sm text-gray-500 dark:text-gray-400 absolute start-1/2 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">5000m</span>
+                <span class="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">10000m</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- new filter area -->
+      <div class="md:max-w-md md:mx-auto w-full p-5 bg-white md:border-r border-b rounded-none">
+        <div x-data="{ open: false, selected: [] }">
+          <div class="flex items-center justify-between cursor-pointer" @click="open = !open">
+            <span class="text-base font-medium text-[#1E1E1E] flex justify-start items-center gap-2">
+              <img class="w-5 h-5" src="./images/sidebar/buildings.png" alt=""> New Filter</span>
+            <svg :class="{ 'transform rotate-180': open }"
+              class="w-6 h-6 text-gray-700 transition-transform duration-300" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+          <!-- inner area -->
+          <div x-show="open" x-cloak class="mt-4">
+            <div class="flex items-center mb-4 cursor-pointer">
+              <input id="default-checkbox-1" type="checkbox" value="No preference" x-model="selected"
+                class="custom-checkbox cursor-pointer">
+              <label for="default-checkbox-1" class="ms-2 text-sm font-normal text-[#4A4A4A]">Option 1</label>
+            </div>
+            <div class="flex items-center mb-4 cursor-pointer">
+              <input id="default-checkbox-2" type="checkbox" value="Today" x-model="selected"
+                class="custom-checkbox cursor-pointer">
+              <label for="default-checkbox-2" class="ms-2 text-sm font-normal text-[#4A4A4A]">Option 2</label>
+            </div>
+            <div class="flex items-center mb-4 cursor-pointer">
+              <input id="default-checkbox-3" type="checkbox" value="3 Days" x-model="selected"
+                class="custom-checkbox cursor-pointer">
+              <label for="default-checkbox-3" class="ms-2 text-sm font-normal text-[#4A4A4A]">Option 3</label>
+            </div>
+            <div class="flex items-center mb-4 cursor-pointer">
+              <input id="default-checkbox-4" type="checkbox" value="5 Days" x-model="selected"
+                class="custom-checkbox cursor-pointer">
+              <label for="default-checkbox-4" class="ms-2 text-sm font-normal text-[#4A4A4A]">Option 4</label>
+            </div>
+            <div class="flex items-center mb-4 cursor-pointer">
+              <input id="default-checkbox-5" type="checkbox" value="Option 5" x-model="selected"
+                class="custom-checkbox cursor-pointer">
+              <label for="default-checkbox-5" class="ms-2 text-sm font-normal text-[#4A4A4A]">Option 5</label>
+            </div>
+            <div class="flex items-center mb-4 cursor-pointer">
+              <input id="default-checkbox-6" type="checkbox" value="Option 6" x-model="selected"
+                class="custom-checkbox cursor-pointer">
+              <label for="default-checkbox-6" class="ms-2 text-sm font-normal text-[#4A4A4A]">Option 6</label>
+            </div>
+            <div class="flex items-center mb-4 cursor-pointer">
+              <input id="default-checkbox-7" type="checkbox" value="Option 7" x-model="selected"
+                class="custom-checkbox cursor-pointer">
+              <label for="default-checkbox-7" class="ms-2 text-sm font-normal text-[#4A4A4A]">Option 7</label>
+            </div>
+            <div class="flex items-center mb-4 cursor-pointer">
+              <input id="default-checkbox-8" type="checkbox" value="Option 8" x-model="selected"
+                class="custom-checkbox cursor-pointer">
+              <label for="default-checkbox-8" class="ms-2 text-sm font-normal text-[#4A4A4A]">Option 8</label>
+            </div>
+            <div class="flex items-center mb-4 cursor-pointer">
+              <input id="default-checkbox-9" type="checkbox" value="Option 9" x-model="selected"
+                class="custom-checkbox cursor-pointer">
+              <label for="default-checkbox-9" class="ms-2 text-sm font-normal text-[#4A4A4A]">Option 9</label>
+            </div>
+            <div class="flex items-center mb-4 cursor-pointer">
+              <input id="default-checkbox-10" type="checkbox" value="Option 10" x-model="selected"
+                class="custom-checkbox cursor-pointer">
+              <label for="default-checkbox-10" class="ms-2 text-sm font-normal text-[#4A4A4A]">Option 10</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- bottom -->
+      <div class="md:max-w-md md:mx-auto w-full md:hidden p-5 flex justify-between items-center gap-2">
+        <a href="#" id="clearSidebar" class="w-3/12 sm:w-2/12 text-sm font-medium text-[#2B59FF]">Clear All</a>
+        <button class="w-9/12 sm:w-10/12 text-sm text-white p-5 rounded-lg bg-[#2B59FF]">Apply</button>
+      </div>
+    </section>
+    <!-- main content area -->
+    <div class="main-content w-full md:w-[70%] lg:w-[75%] bg-white px-5 lg:px-3 mx-auto font-rubik ">
+      <!-- search area -->
+      <div class="">
+        <div class="h-[100px] md:max-w-full md:w-full mx-auto p-[15px] md:p-[20px] bg-[#f4f6f6] rounded-[8px]">
+          <div class="w-full bg-white border border-[#E3DBDB] h-full flex justify-between items-center p-1">
+            <div class="relative plusIcon md:pr-2 flex-grow">
+              <div class="flex justify-between items-center">
+                <input id="searchInput" onclick="showSuggestionsProperty()" class="px-3 border-none outline-none w-full"
+                  type="text" placeholder="Search for property" />
+                <img class="w-5 h-5" src="./images/property-image/add-circle.png" alt="">
+              </div>
+              <div id="searchToggleDropdown"
+                class="absolute top-[82px] bg-white shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] rounded-[8px] w-[150%] xl:w-[805px] overflow-hidden hidden z-10">
+                <div class="p-[20px]">
+                  <!-- search suggestion -->
+                  <div class="border-b mb-[15px] pb-[15px]">
+                    <div class="flex justify-start items-center gap-3">
+                      <img src="./images/banner/city.svg" alt="Cities" />
+                      <h1 class="text-[20px] font-medium">Cities</h1>
+                    </div>
+                    <div class="mt-[15px]">
+                      <!-- search suggestion items -->
+                      <div onclick="selectSuggestionProperty('Costa De Valencia')"
+                        class="item hover:bg-[#2b59ff13] hover:text-blue-600 rounded-[8px] overflow-hidden duration-300 transition-colors p-2 cursor-pointer px-3">
+                        Costa De Valencia
+                      </div>
+                      <div onclick="selectSuggestionProperty('Valencia')"
+                        class="item hover:bg-[#2b59ff13] hover:text-blue-600 rounded-[8px] overflow-hidden duration-300 transition-colors p-2 cursor-pointer px-3">
+                        Valencia
+                      </div>
+                      <div onclick="selectSuggestionProperty('Valencia De La Concepcion')"
+                        class="item hover:bg-[#2b59ff13] hover:text-blue-600 rounded-[8px] overflow-hidden duration-300 transition-colors p-2 cursor-pointer px-3">
+                        Valencia De La Concepcion
+                      </div>
+                    </div>
+                  </div>
+                  <!-- search suggestion -->
+                  <div class="border-b mb-[15px] pb-[15px]">
+                    <div class="flex justify-start items-center gap-3">
+                      <img src="./images/banner/location.svg" alt="Cities" />
+                      <h1 class="text-[20px] font-medium">neighborhoods</h1>
+                    </div>
+                    <div class="mt-[15px]">
+                      <!-- search suggestion items -->
+                      <div
+                        onclick="selectSuggestionProperty('Torre Valentina-Mas Vilar de La Mutxada-Treumal, Calonge')"
+                        class="item hover:bg-[#2b59ff13] hover:text-blue-600 rounded-[8px] overflow-hidden duration-300 transition-colors p-2 cursor-pointer px-3">
+                        Torre Valentina-Mas Vilar de La Mutxada-Treumal,
+                        Calonge
+                      </div>
+                      <div onclick="selectSuggestionProperty('San Fernando - Carretera de Valencia, Cuenca')"
+                        class="item hover:bg-[#2b59ff13] hover:text-blue-600 rounded-[8px] overflow-hidden duration-300 transition-colors p-2 cursor-pointer px-3">
+                        San Fernando - Carretera de Valencia, Cuenca
+                      </div>
+                      <div onclick="selectSuggestionProperty('Zona Calle Valencia, Torrent')"
+                        class="item hover:bg-[#2b59ff13] hover:text-blue-600 rounded-[8px] overflow-hidden duration-300 transition-colors p-2 cursor-pointer px-3">
+                        Zona Calle Valencia, Torrent
+                      </div>
+                    </div>
+                  </div>
+                  <!-- search suggestion -->
+                  <div class="">
+                    <div class="flex justify-start items-center gap-3">
+                      <img src="./images/banner/send.svg" alt="Provinces" />
+                      <h1 class="text-[20px] font-medium">Provinces</h1>
+                    </div>
+                    <div class="mt-[15px]">
+                      <!-- search suggestion items -->
+                      <div onclick="selectSuggestionProperty('Universidad de Valencia')"
+                        class="item hover:bg-[#2b59ff13] hover:text-blue-600 rounded-[8px] overflow-hidden duration-300 transition-colors p-2 cursor-pointer px-3">
+                        Universidad de Valencia
+                      </div>
+                      <div onclick="selectSuggestionProperty('Kinepolis Valencia')"
+                        class="item hover:bg-[#2b59ff13] hover:text-blue-600 rounded-[8px] overflow-hidden duration-300 transition-colors p-2 cursor-pointer px-3">
+                        Kinepolis Valencia
+                      </div>
+                      <div onclick="selectSuggestionProperty('CEIP Virgen de Valencia')"
+                        class="item hover:bg-[#2b59ff13] hover:text-blue-600 rounded-[8px] overflow-hidden duration-300 transition-colors p-2 cursor-pointer px-3">
+                        CEIP Virgen de Valencia
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- radius -->
+            <div class="flex justify-evenly items-center text-[16px] gap-2 w-[140px] md:w-[220px] lg:w-[275px]">
+              <div class="relative">
+                <div id="radiusTypeToggle1"
+                  class="flex justify-start items-center md:w-[126px] gap-2 border-l border-r md:border-r-0 p-2 cursor-pointer">
+                  <img class="w-5 h-5" src="./images/property-image/setting-3.png" alt="">
+                  <span class="hidden md:block">Radius</span>
+                  <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M6.58917 7.08917C6.43289 7.24539 6.22097 7.33316 6 7.33316C5.77903 7.33316 5.56711 7.24539 5.41083 7.08917L0.696668 2.375C0.617076 2.29813 0.553591 2.20617 0.509916 2.1045C0.466242 2.00283 0.443254 1.89348 0.442292 1.78284C0.441331 1.67219 0.462416 1.56245 0.504316 1.46004C0.546217 1.35763 0.608095 1.26458 0.686339 1.18634C0.764583 1.10809 0.857626 1.04622 0.960039 1.00432C1.06245 0.962415 1.17219 0.941331 1.28284 0.942292C1.39348 0.943254 1.50283 0.966242 1.6045 1.00992C1.70617 1.05359 1.79813 1.11708 1.875 1.19667L6 5.32167L10.125 1.19667C10.2822 1.04487 10.4927 0.960874 10.7112 0.962772C10.9297 0.964671 11.1387 1.05231 11.2932 1.20682C11.4477 1.36133 11.5353 1.57034 11.5372 1.78883C11.5391 2.00733 11.4551 2.21783 11.3033 2.375L6.58917 7.08917Z"
+                      fill="#4A4A4A" />
+                  </svg>
+                </div>
+
+                <div id="radiusTypeToggleDropdown1"
+                  class="absolute top-[70px] right-0 md:left-0 bg-white shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] rounded-[8px] w-[228px] overflow-hidden hidden z-10">
+                  <div class="p-4">
+                    <div
+                      class="flex justify-start items-center gap-[15px] p-[10px] cursor-pointer w-full hover:bg-[#2b59ff13] rounded-[8px] overflow-hidden duration-300 transition-colors">
+                      <label class="text-[16px] cursor-pointer">
+                        < 10 Km</label>
+                    </div>
+                    <div
+                      class="flex justify-start items-center gap-[15px] p-[10px] cursor-pointer w-full hover:bg-[#2b59ff13] rounded-[8px] overflow-hidden duration-300 transition-colors">
+                      <label class="text-[16px] cursor-pointer">> 10 Km</label>
+                    </div>
+                    <div
+                      class="flex justify-start items-center gap-[15px] p-[10px] cursor-pointer w-full hover:bg-[#2b59ff13] rounded-[8px] overflow-hidden duration-300 transition-colors">
+                      <label class="text-[16px] cursor-pointer">> 100 Km</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="text-[16px] font-medium text-white px-2 py-2 md:px-3 md:py-2 lg:px-[42px] lg:py-[14px] bg-[#2b59ff] hover:bg-[#5275f5]">
+                <span class="hidden md:block">Search</span>
+                <img class="md:hidden w-5 h-5" src="./images/property-image/akar-icons_search.png" alt="">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- sort area -->
+      <section class="md:justify-between md:items-center md:py-4 hidden md:flex">
+        <!-- Dropdown -->
+        <div class="relative">
+          <button id="sortDropdownButton"
+            class="bg-white w-[100px] border border-[#E3DBDB] rounded-md p-[10px] text-[#1E1E1E] text-sm font-normal flex justify-center gap-2">
+            <span class="capitalize"> Sort by </span><img src="./images/arrow-icon/bottom-arrow.png" alt="" />
+          </button>
+          <div id="sortDropdown"
+            class="absolute left-0 w-[230px] px-[15px] py-[30px] rounded-lg bg-white border border-[#E3DBDB] custom-shadow hidden z-10">
+            <a href="#"
+              class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+              <span class="text-sm">Published - </span><span class="text-xs">New to Old</span>
+            </a>
+            <a href="#"
+              class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+              <span class="text-sm">Published - </span><span class="text-xs">Old to New</span>
+            </a>
+            <a href="#"
+              class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+              <span class="text-sm">Price - </span><span class="text-xs">Low to High</span>
+            </a>
+            <a href="#"
+              class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+              <span class="text-sm">Price - </span><span class="text-xs">High to Low</span>
+            </a>
+            <a href="#"
+              class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+              <span class="text-sm">Plot Size - </span><span class="text-xs">Ascending</span>
+            </a>
+            <a href="#"
+              class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+              <span class="text-sm">Plot Size - </span><span class="text-xs">Descending</span>
+            </a>
+            <a href="#"
+              class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+              <span class="text-sm">Built size - </span><span class="text-xs">Ascending</span>
+            </a>
+            <a href="#"
+              class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+              <span class="text-sm">Built size - </span><span class="text-xs">Descending</span>
+            </a>
+            <a href="#"
+              class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+              <span class="text-sm">Bedrooms - </span><span class="text-xs">Ascending</span>
+            </a>
+            <a href="#"
+              class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+              <span class="text-sm">Bedrooms - </span><span class="text-xs">Descending</span>
+            </a>
+            <a href="#"
+              class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+              <span class="text-sm">Bathrooms - </span><span class="text-xs">Ascending</span>
+            </a>
+            <a href="#"
+              class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+              <span class="text-sm">Bathrooms - </span><span class="text-xs">Descending</span>
+            </a>
+            <a href="#"
+              class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+              <span class="text-sm">Biggest Price Reduction</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Save Text -->
+        <div>
+          <a href="#" class="text-[#2B59FF] text-sm font-medium font-rubik">Save Search</a>
+        </div>
+      </section>
+      <!-- sort area end-->
+      <!-- filter sortby and save search in mobile device -->
+      <div class="mobile-filter flex justify-between my-3 gap-2 lg:gap-5 md:hidden">
+        <a href="#" id="filterButton"
+          class="w-[123px] flex justify-center gap-2 rounded-md border border-[#E2DBDB] p-[10px]">
+          <img src="./images/sidebar/setting-4.png" alt="">
+          <span class="text-sm font-normal tetx-[#1E1E1E]">Filters</span>
+        </a>
+        <a href="#" class="w-[123px] flex justify-center gap-2 rounded-md border border-[#E2DBDB] p-[10px]">
+          <span class="text-sm font-normal tetx-[#1E1E1E]">Save Search</span>
+        </a>
+        <div class="relative">
+          <a href="#" class="w-[123px] flex justify-center gap-2 rounded-md border border-[#E2DBDB] p-[10px]"
+        id="sortDropdownButtonSmall">
+          <img src="./images/sidebar/fe_list-order.png" alt="">
+          <span class="text-sm font-normal tetx-[#1E1E1E]">Sort By</span>
+        </a>
+        <!-- sort drop down -->
+        <div id="sortDropdownSmall"
+          class="absolute right-0 top-[50px] w-[230px] px-[15px] py-[30px] rounded-lg bg-white border border-[#E3DBDB] custom-shadow z-10 hidden">
+          <a href="#"
+            class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+            <span class="text-sm">Published - </span><span class="text-xs">New to Old</span>
+          </a>
+          <a href="#"
+            class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+            <span class="text-sm">Published - </span><span class="text-xs">Old to New</span>
+          </a>
+          <a href="#"
+            class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+            <span class="text-sm">Price - </span><span class="text-xs">Low to High</span>
+          </a>
+          <a href="#"
+            class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+            <span class="text-sm">Price - </span><span class="text-xs">High to Low</span>
+          </a>
+          <a href="#"
+            class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+            <span class="text-sm">Plot Size - </span><span class="text-xs">Ascending</span>
+          </a>
+          <a href="#"
+            class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+            <span class="text-sm">Plot Size - </span><span class="text-xs">Descending</span>
+          </a>
+          <a href="#"
+            class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+            <span class="text-sm">Built size - </span><span class="text-xs">Ascending</span>
+          </a>
+          <a href="#"
+            class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+            <span class="text-sm">Built size - </span><span class="text-xs">Descending</span>
+          </a>
+          <a href="#"
+            class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+            <span class="text-sm">Bedrooms - </span><span class="text-xs">Ascending</span>
+          </a>
+          <a href="#"
+            class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+            <span class="text-sm">Bedrooms - </span><span class="text-xs">Descending</span>
+          </a>
+          <a href="#"
+            class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+            <span class="text-sm">Bathrooms - </span><span class="text-xs">Ascending</span>
+          </a>
+          <a href="#"
+            class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+            <span class="text-sm">Bathrooms - </span><span class="text-xs">Descending</span>
+          </a>
+          <a href="#"
+            class="block px-4 py-2 text-[#1E1E1E] hover:bg-[#2B59FF] hover:text-white font-normal w-[198px] p-2 rounded-lg">
+            <span class="text-sm">Biggest Price Reduction</span>
+          </a>
+        </div>
+        </div>
+        
+      </div>
+      <div class="font-rubik text-xl font-semibold text-[#1E1E1E] my-2">
+        51 Results in Valencia
+      </div>
+      <!-- property list area -->
+      <section class="max-w-[1340px] mx-auto flex flex-col gap-10 lg:5 justify-between mt-6">
+        <!-- card-1  -->
+        <div class="flex justify-between flex-col lg:flex-row lg:h-[200px]">
+          <div class="w-full lg:w-[30%] carousel">
+            <div class="carousel-wrapper">
+              <img src="./images/property-image/property-image-1.jpeg" alt="property-image-1"
+                class="carousel-image ci-1" />
+              <img src="./images/property-image/property-image-1.jpeg" alt="property-image-1"
+                class="carousel-image ci-1" />
+              <img src="./images/property-image/property-image-1.jpeg" alt="property-image-1"
+                class="carousel-image ci-1" />
+              <img src="./images/property-image/property-image-1.jpeg" alt="property-image-1"
+                class="carousel-image ci-1" />
+              <img src="./images/property-image/property-image-1.jpeg" alt="property-image-1"
+                class="carousel-image ci-1" />
+            </div>
+            <div class="carousel-control left" onclick="prevSlide()">
+              &#10094;
+            </div>
+            <div class="carousel-control right" onclick="nextSlide()">
+              &#10095;
+            </div>
+
+            <div
+              class="carousel-counter absolute w-[51px] h-[27px] flex justify-center items-center top-[10px] left-[10px] rounded-[10px] bg-white bg-opacity-60">
+              <span id="currentSlide_1">1</span>/32
+            </div>
+
+            <div class="thumbnails absolute bottom-[10px] left-3 flex justify-start gap-[5px]">
+              <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                <img src="./images/property-image/frame/play-cricle.png" alt="" class="w-5 h-5 cursor-pointer"
+                  onclick=" " />
+              </div>
+              <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                <img src="./images/property-image/frame/3d-rotate.png" alt="" class="w-4 h-4 cursor-pointer"
+                  onclick=" " />
+              </div>
+              <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                <img src="./images/property-image/frame/refresh.png" alt="" class="w-4 h-4 cursor-pointer"
+                  onclick=" " />
+              </div>
+              <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                <img src="./images/property-image/frame/frame-4.png" alt="" class="w-4 h-4 cursor-pointer"
+                  onclick=" " />
+              </div>
+              <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                <img src="./images/property-image/frame/frame-5.png" alt="" class="w-4 h-4 cursor-pointer"
+                  onclick=" " />
+              </div>
+              <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                <img src="./images/property-image/frame/frame-6.png" alt="" class="w-[10px] h-4 cursor-pointer"
+                  onclick=" " />
+              </div>
+            </div>
+          </div>
+          <div class="w-full lg:w-[70%]">
+            <div class="gap-[15px] custom-border custom-border-color custom-radius py-3 px-3 lg:h-[162px]">
+              <div class="flex justify-between items-center">
+                <h3 class="text-[18px] font-bold">Costa de Valencia</h3>
+                <p class="">
+                  <img class="w-6 h-6 mr-3" src="./images/icon/heart.png" alt="heart" />
+                </p>
+              </div>
+              <div class="flex justify-between items-center mt-3">
+                <h3 class="text-[20px] font-bold">$540,000</h3>
+              </div>
+              <div class="flex gap-4 items-center mt-3 pb-1">
+                <div class="flex gap-2 items-center">
+                  <img src="./images/property-image/image-icon/Vector.png" alt="" />
+                  <p class="text-[12px] font-semibold">3</p>
+                </div>
+                <div class="flex gap-2 items-center">
+                  <img src="./images/property-image/image-icon/Vector (1).png" alt="" />
+                  <p class="text-[12px] font-semibold">3</p>
+                </div>
+                <div class="flex gap-2 items-center">
+                  <img src="./images/property-image/image-icon/Vector (2).png" alt="" />
+                  <p class="text-[12px] font-semibold">4300</p>
+                  <p class="text-[12px]">sq ft</p>
+                </div>
+                <div class="flex gap-2 items-center">
+                  <img src="./images/property-image/image-icon/Vector (3).png" alt="" />
+                  <p class="text-[12px] font-semibold">5000</p>
+                  <p class="text-[12px]">m2</p>
+                </div>
+              </div>
+              <div class="flex gap-2 items-center mt-2">
+                <div><img src="./images/icon/location.png" alt="" /></div>
+                <p class="text-[14px]">
+                  Mercado Central, Valencia, FL 33134, Spain
+                </p>
+              </div>
+            </div>
+            <div class="h-[38px] p-[5px_15px] gap-[11px] custom-border2 border-[#E3DBDB] lg:h-[38px] flex items-center">
+              <span class="text-sm font-normal">KRK Real Estate Agents</span>
+              <img class="w-5 h-5" src="./images/property-image/Rectangle 107.png" alt="kkr" />
+            </div>
+          </div>
+        </div>
+        <!-- card-2  -->
+        <div class="flex justify-between flex-col lg:flex-row lg:h-[200px]">
+          <div class="w-full lg:w-[30%] carousel">
+            <div class="carousel-wrapper">
+              <img src="./images/property-image/property-image-2.png" alt="property-image-2"
+                class="carousel-image ci-2" />
+              <img src="./images/property-image/property-image-2.png" alt="property-image-3"
+                class="carousel-image ci-2" />
+              <img src="./images/property-image/property-image-2.png" alt="property-image-3"
+                class="carousel-image ci-2" />
+              <img src="./images/property-image/property-image-2.png" alt="property-image-3"
+                class="carousel-image ci-2" />
+              <img src="./images/property-image/property-image-2.png" alt="property-image-3"
+                class="carousel-image ci-2" />
+            </div>
+            <div class="carousel-control left" onclick="prevSlide2()">
+              &#10094;
+            </div>
+            <div class="carousel-control right" onclick="nextSlide2()">
+              &#10095;
+            </div>
+
+            <div
+              class="carousel-counter absolute w-[51px] h-[27px] flex justify-center items-center top-[10px] left-[10px] rounded-[10px] bg-white bg-opacity-60">
+              <span id="currentSlide_2">1</span>/32
+            </div>
+
+            <div class="thumbnails absolute bottom-[10px] left-3 flex justify-start gap-[5px]">
+              <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                <img src="./images/property-image/frame/play-cricle.png" alt="" class="w-5 h-5 cursor-pointer"
+                  onclick=" " />
+              </div>
+              <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                <img src="./images/property-image/frame/3d-rotate.png" alt="" class="w-4 h-4 cursor-pointer"
+                  onclick=" " />
+              </div>
+              <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                <img src="./images/property-image/frame/refresh.png" alt="" class="w-4 h-4 cursor-pointer"
+                  onclick=" " />
+              </div>
+              <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                <img src="./images/property-image/frame/frame-4.png" alt="" class="w-4 h-4 cursor-pointer"
+                  onclick=" " />
+              </div>
+              <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                <img src="./images/property-image/frame/frame-5.png" alt="" class="w-4 h-4 cursor-pointer"
+                  onclick=" " />
+              </div>
+              <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                <img src="./images/property-image/frame/frame-6.png" alt="" class="w-[10px] h-4 cursor-pointer"
+                  onclick=" " />
+              </div>
+            </div>
+          </div>
+          <div class="w-full lg:w-[70%]">
+            <div class="gap-[15px] custom-border custom-border-color custom-radius py-3 px-3 lg:h-[162px]">
+              <div class="flex justify-between items-center">
+                <h3 class="text-[18px] font-bold">Costa de Valencia</h3>
+                <p class="">
+                  <img class="w-6 h-6 mr-3" src="./images/icon/heart.png" alt="heart" />
+                </p>
+              </div>
+              <div class="flex justify-between items-center mt-3">
+                <h3 class="text-[20px] font-bold">$540,000</h3>
+              </div>
+              <div class="flex gap-4 items-center mt-3 pb-1">
+                <div class="flex gap-2 items-center">
+                  <img src="./images/property-image/image-icon/Vector.png" alt="" />
+                  <p class="text-[12px] font-semibold">3</p>
+                </div>
+                <div class="flex gap-2 items-center">
+                  <img src="./images/property-image/image-icon/Vector (1).png" alt="" />
+                  <p class="text-[12px] font-semibold">3</p>
+                </div>
+                <div class="flex gap-2 items-center">
+                  <img src="./images/property-image/image-icon/Vector (2).png" alt="" />
+                  <p class="text-[12px] font-semibold">4300</p>
+                  <p class="text-[12px]">sq ft</p>
+                </div>
+                <div class="flex gap-2 items-center">
+                  <img src="./images/property-image/image-icon/Vector (3).png" alt="" />
+                  <p class="text-[12px] font-semibold">5000</p>
+                  <p class="text-[12px]">m2</p>
+                </div>
+              </div>
+              <div class="flex gap-2 items-center mt-2">
+                <div><img src="./images/icon/location.png" alt="" /></div>
+                <p class="text-[14px]">
+                  Mercado Central, Valencia, FL 33134, Spain
+                </p>
+              </div>
+            </div>
+            <div class="h-[38px] p-[5px_15px] gap-[11px] custom-border2 border-[#E3DBDB] lg:h-[38px] flex items-center">
+              <span class="text-sm font-normal">KRK Real Estate Agents</span>
+              <img class="w-5 h-5" src="./images/property-image/Rectangle 107.png" alt="kkr" />
+            </div>
+          </div>
+        </div>
+        <!-- card-3  -->
+        <div class="flex justify-between flex-col lg:flex-row lg:h-[200px]">
+          <div class="w-full lg:w-[30%] carousel">
+            <div class="carousel-wrapper">
+              <img src="./images/property-image/property-image-3.png" alt="property-image-3"
+                class="carousel-image ci-3" />
+              <img src="./images/property-image/property-image-3.png" alt="property-image-3"
+                class="carousel-image ci-3" />
+              <img src="./images/property-image/property-image-3.png" alt="property-image-3"
+                class="carousel-image ci-3" />
+              <img src="./images/property-image/property-image-3.png" alt="property-image-3"
+                class="carousel-image ci-3" />
+              <img src="./images/property-image/property-image-3.png" alt="property-image-3"
+                class="carousel-image ci-3" />
+            </div>
+            <div class="carousel-control left" onclick="prevSlide3()">
+              &#10094;
+            </div>
+            <div class="carousel-control right" onclick="nextSlide3()">
+              &#10095;
+            </div>
+            <div
+              class="carousel-counter absolute w-[51px] h-[27px] flex justify-center items-center top-[10px] left-[10px] rounded-[10px] bg-white bg-opacity-60">
+              <span id="currentSlide_3">1</span>/32
+            </div>
+            <div class="thumbnails absolute bottom-[10px] left-3 flex justify-start gap-[5px]">
+              <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                <img src="./images/property-image/frame/play-cricle.png" alt="" class="w-5 h-5 cursor-pointer"
+                  onclick=" " />
+              </div>
+              <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                <img src="./images/property-image/frame/3d-rotate.png" alt="" class="w-4 h-4 cursor-pointer"
+                  onclick=" " />
+              </div>
+              <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                <img src="./images/property-image/frame/refresh.png" alt="" class="w-4 h-4 cursor-pointer"
+                  onclick=" " />
+              </div>
+              <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                <img src="./images/property-image/frame/frame-4.png" alt="" class="w-4 h-4 cursor-pointer"
+                  onclick=" " />
+              </div>
+              <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                <img src="./images/property-image/frame/frame-5.png" alt="" class="w-4 h-4 cursor-pointer"
+                  onclick=" " />
+              </div>
+              <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                <img src="./images/property-image/frame/frame-6.png" alt="" class="w-[10px] h-4 cursor-pointer"
+                  onclick=" " />
+              </div>
+            </div>
+          </div>
+          <div class="w-full lg:w-[70%]">
+            <div class="gap-[15px] custom-border custom-border-color custom-radius py-3 px-3 lg:h-[162px]">
+              <div class="flex justify-between items-center">
+                <h3 class="text-[18px] font-bold">Costa de Valencia</h3>
+                <p class="">
+                  <img class="w-6 h-6 mr-3" src="./images/icon/heart.png" alt="heart" />
+                </p>
+              </div>
+              <div class="flex justify-between items-center mt-3">
+                <h3 class="text-[20px] font-bold">$540,000</h3>
+              </div>
+
+              <div class="flex gap-4 items-center mt-3 pb-1">
+                <div class="flex gap-2 items-center">
+                  <img src="./images/property-image/image-icon/Vector.png" alt="" />
+                  <p class="text-[12px] font-semibold">3</p>
+                </div>
+                <div class="flex gap-2 items-center">
+                  <img src="./images/property-image/image-icon/Vector (1).png" alt="" />
+                  <p class="text-[12px] font-semibold">3</p>
+                </div>
+                <div class="flex gap-2 items-center">
+                  <img src="./images/property-image/image-icon/Vector (2).png" alt="" />
+                  <p class="text-[12px] font-semibold">4300</p>
+                  <p class="text-[12px]">sq ft</p>
+                </div>
+                <div class="flex gap-2 items-center">
+                  <img src="./images/property-image/image-icon/Vector (3).png" alt="" />
+                  <p class="text-[12px] font-semibold">5000</p>
+                  <p class="text-[12px]">m2</p>
+                </div>
+              </div>
+              <div class="flex gap-2 items-center mt-2">
+                <div><img src="./images/icon/location.png" alt="" /></div>
+                <p class="text-[14px]">
+                  Mercado Central, Valencia, FL 33134, Spain
+                </p>
+              </div>
+            </div>
+            <div class="h-[38px] p-[5px_15px] gap-[11px] custom-border2 border-[#E3DBDB] lg:h-[38px] flex items-center">
+              <span class="text-sm font-normal">KRK Real Estate Agents</span>
+              <img class="w-5 h-5" src="./images/property-image/Rectangle 107.png" alt="kkr" />
+            </div>
+          </div>
+        </div>
+        <div class="font-rubik text-xl font-semibold text-[#1E1E1E] my-2">
+          Amazing penthouse in city center Valencia
+        </div>
+        <!-- card 4-->
+        <div class="flex justify-between flex-col lg:flex-row lg:h-[266px]">
+          <div class="w-full lg:w-[59%] carousel flex justify-between">
+            <div class="w-[68%] relative">
+              <div class="carousel-wrapper">
+                <img src="./images/property-image/property-image-4.jpeg" alt="property-image-4"
+                  class="carousel-image ci-4" />
+                <img src="./images/property-image/property-image-4.jpeg" alt="property-image-4"
+                  class="carousel-image ci-4" />
+                <img src="./images/property-image/property-image-4.jpeg" alt="property-image-4"
+                  class="carousel-image ci-4" />
+                <img src="./images/property-image/property-image-4.jpeg" alt="property-image-4"
+                  class="carousel-image ci-4" />
+                <img src="./images/property-image/property-image-4.jpeg" alt="property-image-4"
+                  class="carousel-image ci-4" />
+              </div>
+              <div class="carousel-control left" onclick="prevSlide4()">
+                &#10094;
+              </div>
+              <div class="carousel-control right" onclick="nextSlide4()">
+                &#10095;
+              </div>
+              <div
+                class="carousel-counter absolute w-[51px] h-[27px] flex justify-center items-center top-[10px] left-[10px] rounded-[10px] bg-white bg-opacity-60">
+                <span id="currentSlide_4">1</span>/32
+              </div>
+              <div class="thumbnails absolute bottom-[10px] left-3 flex justify-start gap-[5px]">
+                <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                  <img src="./images/property-image/frame/play-cricle.png" alt="" class="w-5 h-5 cursor-pointer"
+                    onclick=" " />
+                </div>
+                <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                  <img src="./images/property-image/frame/3d-rotate.png" alt="" class="w-4 h-4 cursor-pointer"
+                    onclick=" " />
+                </div>
+                <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                  <img src="./images/property-image/frame/refresh.png" alt="" class="w-4 h-4 cursor-pointer"
+                    onclick=" " />
+                </div>
+                <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                  <img src="./images/property-image/frame/frame-4.png" alt="" class="w-4 h-4 cursor-pointer"
+                    onclick=" " />
+                </div>
+                <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                  <img src="./images/property-image/frame/frame-5.png" alt="" class="w-4 h-4 cursor-pointer"
+                    onclick=" " />
+                </div>
+                <div class="w-6 h-6 rounded-full bg-[#EEEEEE] flex items-center justify-center">
+                  <img src="./images/property-image/frame/frame-6.png" alt="" class="w-[10px] h-4 cursor-pointer"
+                    onclick=" " />
+                </div>
+              </div>
+            </div>
+            <div class="w-[30%] flex flex-col gap-[10px]">
+              <img class="w-full h-[125px] lg:h-[127px]" src="./images/property-image/card-extra-img-1.png"
+                alt="card extra image" />
+              <img class="w-full h-[125px] lg:h-[127px]" src="./images/property-image/card-extra-img-2.png"
+                alt="card extra image" />
+            </div>
+          </div>
+          <div class="w-full lg:w-[41%]">
+            <div class="gap-[15px] custom-border custom-border-color custom-radius py-3 px-3 lg:h-[228px]">
+              <div class="flex justify-between items-center">
+                <h3 class="text-[18px] font-bold">Costa de Valencia</h3>
+                <p class="">
+                  <img class="w-6 h-6 mr-3" src="./images/icon/heart.png" alt="heart" />
+                </p>
+              </div>
+              <div class="flex justify-between items-center mt-3">
+                <h3 class="text-[20px] font-bold">$540,000</h3>
+              </div>
+              <div class="flex gap-4 items-center mt-3 pb-1">
+                <div class="flex gap-2 items-center">
+                  <img src="./images/property-image/image-icon/Vector.png" alt="" />
+                  <p class="text-[12px] font-semibold">3</p>
+                </div>
+                <div class="flex gap-2 items-center">
+                  <img src="./images/property-image/image-icon/Vector (1).png" alt="" />
+                  <p class="text-[12px] font-semibold">3</p>
+                </div>
+                <div class="flex gap-2 items-center">
+                  <img src="./images/property-image/image-icon/Vector (2).png" alt="" />
+                  <p class="text-[12px] font-semibold">4300</p>
+                  <p class="text-[12px]">sq ft</p>
+                </div>
+                <div class="flex gap-2 items-center">
+                  <img src="./images/property-image/image-icon/Vector (3).png" alt="" />
+                  <p class="text-[12px] font-semibold">5000</p>
+                  <p class="text-[12px]">m2</p>
+                </div>
+              </div>
+              <div class="flex gap-2 items-center mt-2">
+                <div><img src="./images/icon/location.png" alt="" /></div>
+                <p class="text-[14px]">
+                  Mercado Central, Valencia, FL 33134, Spain
+                </p>
+              </div>
+            </div>
+            <div class="h-[38px] p-[5px_15px] gap-[11px] custom-border2 border-[#E3DBDB] lg:h-[38px] flex items-center">
+              <span class="text-sm font-normal">KRK Real Estate Agents</span>
+              <img class="w-5 h-5" src="./images/property-image/Rectangle 107.png" alt="kkr" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- pagination area -->
+      <section
+        class="flex justify-center items-center gap-2 lg:gap-[15px] p-[10px] rounded bg-[#E6E7E9] bg-opacity-50 my-5">
+        <!-- Previous Button -->
+        <a href="#" class="text-[#2B59FF] w-[70px] lg:w-[96px] h-5 flex items-center justify-center gap-1 lg:gap-3">
+          <img class="w-5 h-5" src="./images/arrow-icon/left-arrow.png" alt=""> Previous
+        </a>
+
+        <!-- Small Devices -->
+        <div class="flex gap-55px] sm:hidden">
+          <a href="#" class="w-[25px] h-[32px] text-[#4A4A4A] flex justify-center items-center rounded">1</a>
+          <a href="#" class="w-[25px] h-[32px] text-[#4A4A4A] flex justify-center items-center rounded">2</a>
+          <a href="#" class="w-[25px] h-[32px] bg-[#2B59FF] text-white flex justify-center items-center rounded">3</a>
+          <span class="w-[25px] h-[32px] flex justify-center items-center">...</span>
+          <a href="#" class="w-[25px] h-[32px] text-[#4A4A4A] flex justify-center items-center rounded">9</a>
+        </div>
+
+        <!-- Medium Devices -->
+        <div class="hidden sm:flex md:hidden gap-[15px]">
+          <a href="#" class="w-[29px] h-[37px] text-[#4A4A4A] flex justify-center items-center rounded">1</a>
+          <span class="w-[29px] h-[37px] flex justify-center items-center">...</span>
+          <a href="#" class="w-[29px] h-[37px] text-[#4A4A4A] flex justify-center items-center rounded">4</a>
+          <a href="#" class="w-[29px] h-[37px] bg-[#2B59FF] text-white flex justify-center items-center rounded">5</a>
+          <a href="#" class="w-[29px] h-[37px] text-[#4A4A4A] flex justify-center items-center rounded">6</a>
+          <span class="w-[29px] h-[37px] flex justify-center items-center">...</span>
+          <a href="#" class="w-[29px] h-[37px] text-[#4A4A4A] flex justify-center items-center rounded">9</a>
+        </div>
+
+        <!-- Large Devices -->
+        <div class="hidden md:flex lg:gap-[15px]">
+          <span class="w-[29px] h-[37px] flex justify-center items-center">...</span>
+          <a href="#" class="w-[29px] h-[37px] text-[#4A4A4A] flex justify-center items-center rounded">1</a>
+          <a href="#" class="w-[29px] h-[37px] text-[#4A4A4A] flex justify-center items-center rounded">2</a>
+          <a href="#" class="w-[29px] h-[37px] text-[#4A4A4A] flex justify-center items-center rounded">3</a>
+          <a href="#" class="w-[29px] h-[37px] text-[#4A4A4A] flex justify-center items-center rounded">4</a>
+          <a href="#" class="w-[29px] h-[37px] bg-[#2B59FF] text-white flex justify-center items-center rounded">5</a>
+          <a href="#" class="w-[29px] h-[37px] text-[#4A4A4A] flex justify-center items-center rounded">6</a>
+          <a href="#" class="w-[29px] h-[37px] text-[#4A4A4A] flex justify-center items-center rounded">7</a>
+          <a href="#" class="w-[29px] h-[37px] text-[#4A4A4A] justify-center items-center rounded hidden lg:flex">8</a>
+          <span class="w-[29px] h-[37px] flex justify-center items-center">...</span>
+          <a href="#" class="w-[29px] h-[37px] text-[#4A4A4A] flex justify-center items-center rounded">9</a>
+        </div>
+
+        <!-- Next Button -->
+        <a href="#" class="text-[#2B59FF] w-[70px] lg:w-[96px] h-5 flex items-center justify-center gap-1 lg:gap-3">
+          Next <img class="w-5 h-5" src="./images/arrow-icon/right-arrow.png" alt="">
+        </a>
+      </section>
+      <!-- agencies area -->
+      <section>
+        <h3 class="text-base font-bold text-[#1E1E1E]">Agencies in Valencia</h3>
+        <p class="text-sm font-normal text-[#4A4A4A] py-2">Check out Agencies in Valencia</p>
+        <div class="container lg:mx-auto py-10">
+          <div class="flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-row justify-between gap-6">
+            <!-- First Div -->
+            <div class="flex flex-row lg:flex-col gap-3 items-center">
+              <img src="./images/property-image/agencies.png" alt="Image" class="w-[100px] mb-0 lg:mb-4">
+              <div class="text-left lg:text-center">
+                <h2 class="text-[#1E1E1E] font-semibold text-[20px]">KRK Real Estate Agents</h2>
+                <p class="text-[10.31px] font-semibold text-[#1E1E1E] leading-[18px] tracking-[1.1px] mt-2">
+                  <span class="text-[#5CC537]">9.1</span> . 20 rating
+                </p>
+                <p class="text-[11px] font-light text-[#4A4A4A] mt-2 leading-[13.04px]">
+                  Lorem ipsum dolor sit amet consectetur.
+                </p>
+              </div>
+            </div>
+
+            <!-- Second Div -->
+            <div class="flex flex-row lg:flex-col gap-3 items-center">
+              <img src="./images/property-image/agencies.png" alt="Image" class="w-[100px] mb-0 lg:mb-4">
+              <div class="text-left lg:text-center">
+                <h2 class="text-[#1E1E1E] font-semibold text-[20px]">KRK Real Estate Agents</h2>
+                <p class="text-[10.31px] font-semibold text-[#1E1E1E] leading-[18px] tracking-[1.1px] mt-2">
+                  <span class="text-[#5CC537]">9.1</span> . 20 rating
+                </p>
+                <p class="text-[11px] font-light text-[#4A4A4A] mt-2 leading-[13.04px]">
+                  Lorem ipsum dolor sit amet consectetur.
+                </p>
+              </div>
+            </div>
+
+            <!-- Third Div -->
+            <div class="flex flex-row lg:flex-col gap-3 items-center">
+              <img src="./images/property-image/agencies.png" alt="Image" class="w-[100px] mb-0 lg:mb-4">
+              <div class="text-left lg:text-center">
+                <h2 class="text-[#1E1E1E] font-semibold text-[20px]">KRK Real Estate Agents</h2>
+                <p class="text-[10.31px] font-semibold text-[#1E1E1E] leading-[18px] tracking-[1.1px] mt-2">
+                  <span class="text-[#5CC537]">9.1</span> . 20 rating
+                </p>
+                <p class="text-[11px] font-light text-[#4A4A4A] mt-2 leading-[13.04px]">
+                  Lorem ipsum dolor sit amet consectetur.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- footer  -->
+  <footer class="font-rubik relative mt-32">
+    <div class="absolute w-full -top-20 lg:-top-12">
+      <div class="max-w-[1340px] mx-auto lg:px-3">
+        <div style="box-shadow: 0px 10px 15px rgba(73, 77, 234, 0.25)"
+          class="flex flex-col gap-8 lg:flex-row lg:justify-between lg:items-center lg:mb-[-50px] bg-[#2B59FF] lg:rounded-[8px] px-8 py-10 lg:py-6">
+          <h3 class="text-[14px] lg:text-[24px] text-white font-bold text-center">
+            Would you like to publish your properties?
+          </h3>
+          <div class="flex justify-center">
+            <button
+              class="bg-white hover:bg-[#F2F2F2] text-[16px] font-semibold rounded-[8px] px-5 py-3 lg:px-5 lg:py-4">
+              Start Publishing
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-[#EAEAEA]">
+      <div class="max-w-[1340px] mx-auto flex flex-col lg:flex-row gap-7 lg:gap-24 pt-32 pb-32 px-5 lg:px-3">
+        <div class="space-y-4 lg:space-y-7">
+          <img src="./images/footer/logo.png" alt="" />
+          <div class="hidden lg:flex items-center gap-7">
+            <img src="./images/footer/fb.png" alt="" />
+            <img src="./images/footer/linkedin.png" alt="" />
+            <img src="./images/footer/x.png" alt="" />
+            <img src="./images/footer/insta.png" alt="" />
+          </div>
+          <p class="text-[#1E1E1E] text-[14px]">
+            Here we will add Tagline about your <br />
+            company. Could be anything that <br />
+            represents your company.
+          </p>
+          <p class="text-[#1E1E1E] text-[14px] font-semibold hidden lg:block">
+            Costa Nova@ 2024 All rights reserved
+          </p>
+        </div>
+        <div>
+          <h3 class="text-black text-[18px] font-bold">Pages</h3>
+          <div class="flex flex-col cursor-pointer mt-6">
+            <a href="index.html" class="mt-4 text-[15px]">Home</a>
+            <a href="#" class="mt-4 text-[15px]">About Us</a>
+            <a href="#" class="mt-4 text-[15px]">Blog</a>
+            <a href="#" class="mt-4 text-[15px]">Advertising</a>
+            <a href="#" class="mt-4 text-[15px]">Jobs at Costanova</a>
+            <a href="contact.html" class="mt-4 text-[15px]">Contact Us</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-black text-[18px] font-bold">Policies</h3>
+          <div class="flex flex-col cursor-pointer mt-6">
+            <a class="mt-4 text-[15px]">Privacy Policy</a>
+            <a class="mt-4 text-[15px]">Cookie Policy</a>
+            <a class="mt-4 text-[15px]">Legal Disclaimer</a>
+            <a class="mt-4 text-[15px]">Help</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-black text-[18px] font-bold">Others</h3>
+          <div class="flex flex-col cursor-pointer mt-6">
+            <a class="mt-4 text-[15px]">Agency</a>
+            <a class="mt-4 text-[15px]">Register your agency</a>
+            <a class="mt-4 text-[15px]">Information for agencies</a>
+            <a class="mt-4 text-[15px]">Agency Login</a>
+            <a class="mt-4 text-[15px]">FAQ</a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center pb-16 block lg:hidden">
+        <div class="flex justify-center items-center gap-7">
+          <img src="./images/footer/fb.png" alt="" />
+          <img src="./images/footer/linkedin.png" alt="" />
+          <img src="./images/footer/x.png" alt="" />
+          <img src="./images/footer/insta.png" alt="" />
+        </div>
+        <p class="text-[#1E1E1E] text-[14px] font-semibold mt-10">
+          Costa Nova@ 2024 All rights reserved
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://kit.fontawesome.com/722bf37857.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/alpinejs" defer></script>
+  <script src="./js/propertyList.js"></script>
+</body>
+
+</html>

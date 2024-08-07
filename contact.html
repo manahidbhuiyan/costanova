@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us</title>
+  <!-- custom css  -->
+  <link rel="stylesheet" href="./style/additional.css" />
+  <!-- tailwind cdn  -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- font awesome  -->
+  <script src="https://kit.fontawesome.com/722bf37857.js" crossorigin="anonymous"></script>
+
+  <style>
+    .banner-1 {
+      background-image: url('./images/contact/banner/banner1.png');
+      background-position: center;
+      background-size: 100%;
+      background-repeat: no-repeat;
+    }
+
+    .banner-2 {
+      background-image: url('./images/contact/banner/banner2.png');
+      background-position: center;
+      background-size: 100%;
+      background-repeat: no-repeat;
+    }
+
+    .about {
+      background-image: url('./images/contact/about-us/about-us-bg.png');
+      background-position: center;
+      background-size: auto;
+      background-repeat: no-repeat;
+      height: 965px;
+    }
+
+    .offer {
+      background-image: url('./images/contact/offer/bg-top.png'), url('./images/contact/offer/bg-bottom.png');
+      background-position: top, bottom;
+      background-size: 100%, 100%;
+      background-repeat: no-repeat, no-repeat;
+    }
+
+    .offer-1 {
+      background-color: white;
+      background-image: url('./images/contact/offer/vector\ 1.png');
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .advice {
+      background-image: url('./images/contact/advice/advice-bg1.png'), url('./images/contact/advice/advice-bg2.png');
+      background-position: top left, bottom right;
+      background-size: auto, auto;
+      background-repeat: no-repeat, no-repeat;
+    }
+
+    .advice1,
+    .advice2 {
+      background-image: none;
+    }
+
+
+
+    @media only screen and (max-width: 1023.9px) {
+
+      .about {
+        background-image: url('./images/contact/about-us/about-us-bg.png');
+        background-position: bottom right;
+        background-size: auto;
+        background-repeat: no-repeat;
+        height: 1450px;
+      }
+    }
+
+    @media only screen and (max-width: 800px) {
+
+      .about {
+        height: 1550px;
+      }
+    }
+
+    @media only screen and (max-width: 600px) {
+      .about {
+        background-image: none;
+      }
+
+      .about-phone {
+        background-image: url('./images/contact/about-us/about-us-bg-p.png');
+        background-position: bottom;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        height: 1650px;
+      }
+    }
+
+    @media only screen and (max-width: 500px) {
+      .about-phone {
+        height: 1550px;
+      }
+    }
+
+    @media only screen and (max-width: 450px) {
+      .about-phone {
+        height: 1450px;
+      }
+    }
+
+    @media only screen and (max-width: 1023.9px) {
+
+      .advice {
+        background-image: none;
+      }
+
+      .advice1 {
+        background-image: url('./images/contact/advice/advice-bg1.png');
+        background-position: left;
+        background-size: auto;
+        background-repeat: no-repeat;
+        padding: 20px;
+      }
+
+      .advice2 {
+        background-image: url('./images/contact/advice/advice-bg2.png');
+        background-position: right;
+        background-size: auto;
+        background-repeat: no-repeat;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="w-full select-none mb-24" style="background-position: center">
+    <!-- Navbar -->
+    <div class="navbar text-black fixed top-0 bg-white z-50 border-b-2 border-[#e3dbdb]">
+      <div class="border-b w-full border-[#ffffff4f]">
+        <div class="max-w-[1340px] h-[80px] px-5 lg:px-3 mx-auto font-rubik flex justify-between items-center">
+          <div class="flex gap-4 justify-start items-center">
+            <!-- navbar bar -->
+            <div class="md:hidden">
+              <i id="bar-icon" class="fa-solid fa-bars cursor-pointer text-black text-xl"></i>
+            </div>
+            <!-- Logo -->
+            <img id="logo" class="black-logo" src="./images/common/header/logo-black.png" alt="Logo" />
+          </div>
+
+          <div id="menu"
+            class="menu-item hidden md:flex w-full md:w-auto flex-col md:flex-row items-center gap-5 shadow md:shadow-none">
+            <!-- Language -->
+            <div class="relative text-[16px] text-black">
+              <div class="flex justify-start items-center font-medium cursor-pointer gap-2 uppercase"
+                id="languageSelector">
+                <span class="language">EN</span>
+                <i id="languagearrow" class="fa-solid fa-chevron-down text-black"></i>
+              </div>
+              <div id="languageOptions"
+                class="rounded-[4px] left-0 top-[50px] absolute w-[194px] p-[15px] space-y-[5px] bg-white shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] hidden z-10">
+                <div
+                  class="flex rounded-[8px] justify-start items-center gap-[15px] text-black hover:bg-[#ffd63149] p-3 languageOption font-medium cursor-pointer bg-[#ffd63149]"
+                  data-lang="EN">
+                  <img class="w-[24px] h-[24px]" src="./images/common/header/emojione_flag-for-united-kingdom.svg"
+                    alt="united-kingdom" />
+                  <span class="text-[14px]">English</span>
+                </div>
+                <div
+                  class="flex rounded-[8px] justify-start items-center gap-[15px] text-black hover:bg-[#ffd63149] p-3 languageOption font-medium cursor-pointer"
+                  data-lang="DE">
+                  <img class="w-[24px] h-[24px]" src="./images/common/header/emojione_flag-for-germany.svg"
+                    alt="united-kingdom" />
+                  <span class="text-[14px]">German</span>
+                </div>
+                <div
+                  class="flex rounded-[8px] justify-start items-center gap-[15px] text-black hover:bg-[#ffd63149] p-3 languageOption font-medium cursor-pointer"
+                  data-lang="ES">
+                  <img class="w-[24px] h-[24px]" src="./images/common/header/emojione_flag-for-spain.svg"
+                    alt="united-kingdom" />
+                  <span class="text-[14px]">Spanish</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Profile button -->
+            <div class="relative text-[16px] text-black">
+              <div class="flex justify-start items-center font-medium cursor-pointer gap-2 capitalize"
+                id="profileSelector">
+                <span class="language">Hello William</span>
+                <img class="w-8 h-8 sm:w-[50px] sm:h-[50px]" src="./images/common/header/Mask group.png" alt="" />
+                <i id="profileArrow" class="fa-solid fa-chevron-down text-black"></i>
+              </div>
+              <div id="profileOptions"
+                class="rounded-[4px] left-0 top-[38px] sm:top-[60px] absolute w-[194px] p-[15px] space-y-[5px] bg-white shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] hidden">
+                <div
+                  class="flex rounded-[8px] justify-start items-center gap-[15px] text-black hover:bg-[#ffd63149] p-3 profileOption font-medium cursor-pointer bg-[#ffd63149]"
+                  data-lang="EN">
+                  <span class="text-[14px]">Profile</span>
+                </div>
+                <div
+                  class="flex rounded-[8px] justify-start items-center gap-[15px] text-black hover:bg-[#ffd63149] p-3 profileOption font-medium cursor-pointer"
+                  data-lang="DE">
+                  <span class="text-[14px]">Edit Profile</span>
+                </div>
+                <div
+                  class="flex rounded-[8px] justify-start items-center gap-[15px] text-black hover:bg-[#ffd63149] p-3 profileOption font-medium cursor-pointer"
+                  data-lang="ES">
+                  <span class="text-[14px]">Sign In</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- small device button -->
+          <div class="flex justify-end gap-4 items-center md:hidden">
+            <a href="#" class="text-sm font-normal text-[#1E1E1E]">Login</a>
+            <a href="#" class="w-[71px] rounded-lg px-[10px] py-2 bg-[#1E1E1E] text-white text-sm font-normal">Sign
+              Up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <!-- Banner  -->
+    <div class="max-w-[1340px] mx-auto flex gap-3 items-center font-rubik px-5 lg:px-3 mt-5 mb-5">
+      <p class="text-[#CACACA] text-[14px]">Home</p>
+      <img src="./images/contact/banner/mingcute_right-fill.png" alt="">
+      <p class="text-[#1E1E1E] text-[14px]">Welcome to Costanova</p>
+    </div>
+    <section class="max-w-[1340px] mx-auto px-5 lg:px-3">
+      <div class="flex flex-col lg:flex-row gap-5 lg:gap-[50px] lg:justify-between">
+        <div class="lg:max-w-[940px] w-full">
+          <div class="font-rubik">
+            <h1 class="text-[#1E1E1E] text-[24px] md:text-[32px] lg:text-[40px] font-bold leading-[50px]">Elevating
+              Affordable Living with a Purpose
+              Using Costanova</h1>
+            <div class="font-rubik flex items-center gap-[5px] mt-5">
+              <p
+                class="w-[100px] flex justify-center text-[#2B59FF] bg-[#2B59FF26] text-[12px] lg:text-[14px] py-[5px] rounded-xl">
+                #agencies</p>
+              <p
+                class="w-[100px] flex justify-center text-[#2B59FF] bg-[#2B59FF26] text-[12px] lg:text-[14px] py-[5px] rounded-xl">
+                #offices</p>
+            </div>
+          </div>
+          <div class="bg-[#0C1B53] flex flex-col lg:flex-row gap-5 lg:gap-7 p-5 rounded-[10px] mt-5">
+            <p
+              class="lg:max-w-[750px] w-full text-white text-[12px] lg:text-[14px] text-center lg:text-left font-rubik ">
+              Lorem ipsum dolor sit amet consectetur. Faucibus ultricies quam ac aliquam risus lacus. Diam elementum
+              vehicula quis nam vitae massa etiam aliquam. Mattis interdum . Lorem ipsum dolor sit amet consectetur.
+            </p>
+            <div class="flex justify-center">
+              <button
+                class="w-[100px] mx-auto bg-white text-[#0C1B53] text-[12px] lg:text-[14px] font-rubik font-semibold rounded-xl px-2 py-[6px]">Get
+                Started</button>
+            </div>
+          </div>
+          <div class="font-rubik">
+            <h3
+              class="text-[#1E1E1E] text-[14px] md:text-[16px] lg:text-[20px] text-center lg:text-left font-semibold mt-5">
+              Your trusted real estate partner in the Netherlands. </h3>
+            <p class="text-[#4A4A4A] text-[14px] text-center lg:text-left leading-8 mt-4">With a mission to transform
+              the housing
+              market, we specialize in offering high-quality, affordable homes tailored to meet the diverse needs of our
+              clients. Lorem ipsum dolor sit amet consectetur. Faucibus ultricies quam ac aliquam risus lacus. Diam
+              elementum vehicula quis nam vitae massa etiam aliquam. Lorem ipsum dolor sit amet consectetur. Faucibus
+              ultricies quam ac aliquam risus lacus. Diam elementum vehicula quis nam vitae massa etiam aliquam. Mattis
+              interdum . Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. With a mission
+              to transform the housing market, we specialize in offering high-quality, affordable homes tailored to meet
+              the diverse needs of our clients. Lorem ipsum dolor sit amet consectetur. Faucibus ultricies quam ac
+              aliquam risus lacus. Diam elementum vehicula quis nam vitae massa etiam aliquam. Lorem ipsum dolor sit
+              amet consectetur. Faucibus ultricies quam ac aliquam risus lacus.</p>
+          </div>
+        </div>
+        <div class="lg:max-w-[350px] w-full">
+          <div class="flex flex-col gap-2">
+            <div class="banner-2 font-rubik p-5 rounded-2xl">
+              <h3 class="text-center text-[#1E1E1E] text-[16px] lg:text-[20px] font-medium ">Register you agency
+              </h3>
+              <p class="text-center text-[#4A4A4A] text-[14px] mt-2 leading-7">Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit.Ut  efficitur leo ut magna mollis, non scelerisque loremfa cilisis. Racilisis eu eros
+                sit amet cursus.</p>
+              <div class="flex justify-center">
+                <button class="w-[150px] bg-[#1E1E1E] text-white text-[14px] py-5 rounded-[18px] mt-2">Register</button>
+              </div>
+            </div>
+            <div class="banner-1 font-rubik p-5 rounded-2xl">
+              <h3 class="text-center text-[#1E1E1E] text-[16px] lg:text-[20px] font-medium ">Search For Agencies</h3>
+              <p class="text-center text-[#4A4A4A] text-[14px] mt-2 leading-7">Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit.Ut  efficitur leo ut magna mollis, non scelerisque loremfa cilisis. Racilisis eu eros
+                sit amet cursus.</p>
+              <div class="flex justify-center">
+                <button class="w-[150px] bg-[#1E1E1E] text-white text-[14px] py-5 rounded-[18px] mt-2">Search</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- About Us  -->
+    <section class="about about-phone border-b-2 border-t-2 my-5 lg:my-10">
+      <div class="max-w-[1340px] mx-auto px-5 lg:px-3">
+        <h1
+          class="text-[#1E1E1E] text-center text-[24px] md:text-[28px] lg:text-[32px] font-[800] font-rubik pt-[20px] lg:pt-[50px]">
+          About Us</h1>
+        <p
+          class="max-w-[860px] w-full lg:w-full mx-auto text-[#4A4A4A] text-center text-[14px] md:text-[16px] lg:text-[18px] font-rubik mt-3 lg:mt-5 ">
+          We are dedicated to community building, creating vibrant and inclusive neighborhoods that foster a sense of
+          belonging. </p>
+
+        <div
+          class="lg:max-w-[980px] w-full lg:w-full mx-auto flex flex-col lg:flex-row gap-[90px] py-[20px] lg:py-[50px] ">
+          <div class="font-rubik flex flex-col gap-5 justify-center items-center">
+            <img src="./images/contact/about-us/3m.png" alt="">
+            <h3 class="text-[20px] md:text-[22px] lg:text-[24px] font-semibold">Average Visit Duration</h3>
+          </div>
+
+          <div class="font-rubik flex flex-col gap-5 justify-center items-center">
+            <img src="./images/contact/about-us/800million.png" alt="">
+            <h3 class="text-[20px] md:text-[22px] lg:text-[24px] font-semibold">Visits on Costanova</h3>
+          </div>
+
+          <div class="font-rubik flex flex-col gap-5 justify-center items-center">
+            <img src="./images/contact/about-us/300+.png" alt="">
+            <h3 class="text-[20px] md:text-[22px] lg:text-[24px] font-semibold">Properties Sold</h3>
+          </div>
+        </div>
+
+        <div class="flex justify-center">
+          <button
+            class="flex items-center gap-2 bg-[#2B59FF] text-white text-[16px] lg:text-[20px] font-bold font-rubik py-[15px] px-[30px] rounded-full "><img
+              src="./images/contact/about-us/call.png" alt=""> Contact Us</button>
+        </div>
+      </div>
+
+    </section>
+    <!-- Our Vision  -->
+    <section class="bg-[#FCFBFC] border-b-2 border-t-2">
+      <div
+        class="max-w-[1340px] mx-auto flex gap-4 lg:gap-[60px] flex-col-reverse lg:flex-row items-center px-5 lg:px-3">
+        <div class="max-w-[790px] w-full lg:w-full font-rubik ">
+          <h2 class=" text-[#1E1E1E] text-[20px] md:text-[22px] lg:text-[24px] font-bold text-center lg:text-left mb-2">
+            Our Vision</h2>
+          <p class="text-[#4A4A4A] text-[12px] lg:text-[14px] text-center lg:text-left">We envision a future where
+            everyone has the opportunity to own a home that reflects their lifestyle and aspirations. By leveraging
+            innovative solutions and sustainable practices, we aim to set new standards in the real estate industry.</p>
+          <p class="text-[#4A4A4A] text-[12px] lg:text-[14px] text-center lg:text-left mt-5">We are committed to
+            creating a world where homeownership is accessible to all, offering properties that are not only affordable
+            but also tailored to individual needs. Our focus on innovation ensures we stay at the forefront of the
+            industry, while our dedication to sustainability helps us build homes that support a healthier planet.</p>
+        </div>
+        <div>
+          <img src="./images/contact/vision.png" alt="" class="w-full">
+        </div>
+      </div>
+    </section>
+    <!-- What we offer  -->
+    <section class="offer border-b-2 border-t-2 mt-[20px] lg:mt-[50px] mb-[20px] lg:mb-[50px] pb-[40px] lg:pb-[55px]">
+      <div class="max-w-[1010px] mx-auto px-5 lg:px-3">
+        <h1
+          class="text-[#1E1E1E] text-center text-[24px] md:text-[28px] lg:text-[32px] font-[800] font-rubik mt-2 uppercase pt-[40px] pb-[20px] lg:pt-[45px] lg:pb-[45px]">
+          What we offer</h1>
+
+        <div>
+          <!-- first  -->
+          <div class="flex gap-5 lg:gap-8 flex-col lg:flex-row">
+            <div
+              class="offer-1 lg:max-w-[690px] w-full lg:w-full flex flex-col justify-center lg:justify-normal items-center lg:items-start border rounded-[18px] font-rubik lg:pl-[50px] py-[20px] lg:py-[80px]">
+              <h2 class="text-[#1E1E1E] text-[20px] md:text-[22px] lg:text-[24px] font-semibold">Affordable Housing</h2>
+              <p class="text-[#4A4A4A] text-[12px] lg:text-[14px] leading-7 text-center lg:text-left">Quality homes at
+                competitive prices to make homeownership <br> accessible to more people.</p>
+              <button class="text-[10px] lg:text-[14px] border rounded-lg p-[10px] mt-5 lg:mt-8">Start your
+                journey</button>
+            </div>
+
+            <img src="./images/contact/offer/offer1.png" alt="" class="hidden lg:block">
+            <img src="./images/contact/offer/offer-1-m.png" alt="" class="w-full block lg:hidden">
+
+          </div>
+          <!-- 2nd  -->
+          <div class="flex gap-5 lg:gap-8 flex-col-reverse lg:flex-row mt-[30px] lg:mt-[50px]">
+
+            <img src="./images/contact/offer/offer2.png" alt="" class="hidden lg:block">
+            <img src="./images/contact/offer/offer-2-m.png" alt="" class="w-full block lg:hidden">
+
+            <div
+              class="offer-1 lg:max-w-[690px] w-full lg:w-full flex flex-col justify-center lg:justify-normal items-center lg:items-start border rounded-[18px] font-rubik lg:pl-[50px] py-[20px] lg:py-[80px]">
+              <h2 class="text-[#1E1E1E] text-[20px] md:text-[22px] lg:text-[24px] font-semibold">Modern Designs</h2>
+              <p class="text-[#4A4A4A] text-[12px] lg:text-[14px] leading-7 text-center lg:text-left">Contemporary
+                architecture and interiors that blend style and <br> functionality..</p>
+              <button class="text-[10px] lg:text-[14px] border rounded-lg p-[10px] mt-5 lg:mt-8">Start your
+                journey</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Team  -->
+    <section class="border-t-2 border-b-2 pt-5 pb-5 lg:pt-12 lg:pb-12">
+      <div class="max-w-[1340px] mx-auto px-5 lg:px-3 ">
+        <p class="text-[#2B59FF] text-center text-[14px] lg:text-[16px] font-bold font-rubik">Our Team</p>
+        <h1 class="text-[#1E1E1E] text-center text-[24px] md:text-[28px] lg:text-[32px] font-[800] font-rubik mt-2">MEET
+          OUR AMAZING TEAM</h1>
+
+        <div class="grid gap-6 lg:gap-x-6 lg:gap-y-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-8 lg:mt-16">
+          <!-- card 1  -->
+          <div class="flex justify-between items-center bg-[#FCFBFC] rounded-xl px-[22px] py-[40px]">
+            <div class="font-rubik">
+              <h2 class="text-[#1E1E1E] text-[16px] md:text-[18px] lg:text-[20px] font-semibold leading-none">Jenny
+                Schmidt</h2>
+              <p class="text-[#4A4A4A] text-[12px] lg:text-[14px] leading-none">Founder</p>
+              <p class="text-[#4A4A4A] text-[12px] lg:text-[14px] pt-2">CEO</p>
+              <img src="./images/contact/team/linkedin.svg" alt="" class="mt-2">
+            </div>
+            <div><img src="./images/contact/team/team1.png" alt=""></div>
+          </div>
+          <!-- card 2  -->
+          <div class="flex justify-between items-center bg-[#FCFBFC] rounded-xl px-[22px] py-[40px]">
+            <div class="font-rubik">
+              <h2 class="text-[#1E1E1E] text-[16px] md:text-[18px] lg:text-[20px] font-semibold leading-none">Jenny
+                Schmidt</h2>
+              <p class="text-[#4A4A4A] text-[12px] lg:text-[14px] leading-none">Founder</p>
+              <p class="text-[#4A4A4A] text-[12px] lg:text-[14px] pt-2">CEO</p>
+              <img src="./images/contact/team/linkedin.svg" alt="" class="mt-2">
+            </div>
+            <div><img src="./images/contact/team/team2.png" alt=""></div>
+          </div>
+          <!-- card 3  -->
+          <div class="flex justify-between items-center bg-[#FCFBFC] rounded-xl px-[22px] py-[40px]">
+            <div class="font-rubik">
+              <h2 class="text-[#1E1E1E] text-[16px] md:text-[18px] lg:text-[20px] font-semibold leading-none">Jenny
+                Schmidt</h2>
+              <p class="text-[#4A4A4A] text-[12px] lg:text-[14px] leading-none">Founder</p>
+              <p class="text-[#4A4A4A] text-[12px] lg:text-[14px] pt-2">CEO</p>
+              <img src="./images/contact/team/linkedin.svg" alt="" class="mt-2">
+            </div>
+            <div><img src="./images/contact/team/team3.png" alt=""></div>
+          </div>
+          <!-- card 4  -->
+          <div class="flex justify-between items-center bg-[#FCFBFC] rounded-xl px-[22px] py-[40px]">
+            <div class="font-rubik">
+              <h2 class="text-[#1E1E1E] text-[16px] md:text-[18px] lg:text-[20px] font-semibold leading-none">Jenny
+                Schmidt</h2>
+              <p class="text-[#4A4A4A] text-[12px] lg:text-[14px] leading-none">Founder</p>
+              <p class="text-[#4A4A4A] text-[12px] lg:text-[14px] pt-2">CEO</p>
+              <img src="./images/contact/team/linkedin.svg" alt="" class="mt-2">
+            </div>
+            <div><img src="./images/contact/team/team1.png" alt=""></div>
+          </div>
+          <!-- card 5  -->
+          <div class="flex justify-between items-center bg-[#FCFBFC] rounded-xl px-[22px] py-[40px]">
+            <div class="font-rubik">
+              <h2 class="text-[#1E1E1E] text-[16px] md:text-[18px] lg:text-[20px] font-semibold leading-none">Jenny
+                Schmidt</h2>
+              <p class="text-[#4A4A4A] text-[12px] lg:text-[14px] leading-none">Founder</p>
+              <p class="text-[#4A4A4A] text-[12px] lg:text-[14px] pt-2">CEO</p>
+              <img src="./images/contact/team/linkedin.svg" alt="" class="mt-2">
+            </div>
+            <div><img src="./images/contact/team/team2.png" alt=""></div>
+          </div>
+          <!-- card 6  -->
+          <div class="flex justify-between items-center bg-[#FCFBFC] rounded-xl px-[22px] py-[40px]">
+            <div class="font-rubik">
+              <h2 class="text-[#1E1E1E] text-[16px] md:text-[18px] lg:text-[20px] font-semibold leading-none">Jenny
+                Schmidt</h2>
+              <p class="text-[#4A4A4A] text-[12px] lg:text-[14px] leading-none">Founder</p>
+              <p class="text-[#4A4A4A] text-[12px] lg:text-[14px] pt-2">CEO</p>
+              <img src="./images/contact/team/linkedin.svg" alt="" class="mt-2">
+            </div>
+            <div><img src="./images/contact/team/team3.png" alt=""></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Advice  -->
+    <section>
+      <h1
+        class="text-[#1E1E1E] text-center text-[24px] md:text-[28px] lg:text-[32px] font-[800] font-rubik mt-[20px] lg:mt-[50px] pb-[20px] ">
+        Advice</h1>
+      <div class="advice">
+        <div class="max-w-[1440px] mx-auto px-5 lg:px-3">
+          <div class=" flex gap-5 lg:gap-[100px] flex-col lg:flex-row lg:justify-between items-center">
+            <div class="advice1 w-full lg:max-w-[734px] lg:w-full lg:pl-[50px] font-rubik">
+              <h2 class="text-[#1E1E1E] text-[24px] md:text-[26px] lg:text-[30px] font-semibold">Understanding Your
+                Budget
+              </h2>
+              <p class="text-[#4A4A4A] text-[14px] md:text-[16px] lg:text-[18px] leading-7 mt-3 lg:mt-5">
+                Before starting your home search, determine your budget by assessing your financial situation and
+                getting
+                pre-approved for a mortgage.</p>
+              <button
+                class="bg-[#2B59FF] text-white text-[10px] lg:text-[14px] flex items-center gap-1 border rounded-lg p-2 lg:p-[13px] mt-5 lg:mt-8">See
+                More <img src="./images/contact/down-line.png" alt=""></button>
+            </div>
+            <div class="w-full lg:max-w-[566px] lg:w-full"><img src="./images/contact/advice/advice1.png" alt=""
+                class="w-full"></div>
+          </div>
+
+          <div
+            class=" flex gap-5 lg:gap-[100px] flex-col-reverse lg:flex-row lg:justify-between items-center mt-12 lg:mt-0">
+            <div class=" w-full lg:max-w-[566px] lg:w-full"><img src="./images/contact/advice/advice2.png" alt=""
+                class="w-full"></div>
+            <div class="advice2 w-full lg:max-w-[734px] lg:w-full font-rubik">
+              <h2 class="text-[#1E1E1E] text-[24px] md:text-[26px] lg:text-[30px] font-semibold">Staging Your Home
+              </h2>
+              <p class="text-[#4A4A4A] text-[14px] md:text-[16px] lg:text-[18px] leading-7  mt-3 lg:mt-5">
+                If selling, stage your home to highlight its best features and attract potential buyers.</p>
+              <button
+                class="bg-[#2B59FF] text-white text-[10px] lg:text-[14px] flex items-center gap-1 border rounded-lg p-2 lg:p-[13px] mt-5 lg:mt-8">See
+                More <img src="./images/contact/down-line.png" alt=""></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- News -->
+    <section class="max-w-[1340px] mx-auto px-5 lg:px-3 mt-[30px] lg:mt-[50px]">
+      <p class="text-[#1E1E1E] text-center text-[16px] font-bold font-rubik tracking-[2px]">CHECK OUT WHATS NEW</p>
+      <h1
+        class="text-[#1E1E1E] text-center text-[24px] md:text-[28px] lg:text-[32px] font-[800] font-rubik mt-3 lg:mt-5 mb-5 lg:mb-10">
+        Latest News</h1>
+      <div class="flex gap-5 lg:gap-[25px] flex-col lg:flex-row border-b-2 ">
+        <div class="lg:max-w-[749px] w-full pb-5 lg:pb-[40px] border-b-2 lg:border-none">
+          <div>
+            <img src="./images/contact/news/news1.png" alt="" class="w-full">
+          </div>
+          <div class="font-rubik mt-5">
+            <h2 class="text-[#1E1E1E] text-[18px] lg:text-[20px] font-bold">Budgeting for Your First Home: A
+              Step-by-Step Guide</h2>
+            <p class="max-w-[717px] w-full text-[#4A4A4A] text-[14px] mt-5 leading-9">Learn how to assess your financial
+              situation, understand mortgage options,
+              and
+              create a realistic budget for purchasing your first home.</p>
+            <h3 class="text-[#2B59FFCC] text-[14px] lg:text-[16px] font-bold mt-3">Published on : 23 July 2024</h3>
+          </div>
+        </div>
+        <div class="lg:max-w-[566px] w-full lg:border-l-2 ">
+          <div class="flex items-center gap-6 lg:gap-16 border-b-2">
+            <div class="lg:w-[350px] w-full font-rubik lg:pl-[20px] py-12">
+              <h2 class="text-[#1E1E1E] text-[14px] lg:text-[16px] font-bold">Mastering Real Estate Negotiations:
+                Strategies for Success</h2>
+
+              <h3 class="text-[#2B59FFCC] text-[14px] lg:text-[16px] font-bold mt-3">Published on : 23 July 2024</h3>
+            </div>
+            <div class="w-[140px]"><img src="./images/contact/news/news2.png" alt="" class="w-[140px]"></div>
+          </div>
+          <div class="flex items-center gap-6 lg:gap-16 border-b-2">
+            <div class="lg:w-[350px] w-full font-rubik lg:pl-[20px] py-12">
+              <h2 class="text-[#1E1E1E] text-[14px] lg:text-[16px] font-bold">The Importance of Home Inspections:
+                What to Look For</h2>
+
+              <h3 class="text-[#2B59FFCC] text-[14px] lg:text-[16px] font-bold mt-3">Published on : 23 July 2024</h3>
+            </div>
+            <div class="w-[140px]"><img src="./images/contact/news/news3.png" alt="" class="w-[140px]"></div>
+          </div>
+          <div class="flex items-center gap-6 lg:gap-16 ">
+            <div class="lg:w-[350px] w-full font-rubik lg:pl-[20px] py-12">
+              <h2 class="text-[#1E1E1E] text-[14px] lg:text-[16px] font-bold">Lorem ipsum dolor sit amet consectetur
+                Vestibulum </h2>
+
+              <h3 class="text-[#2B59FFCC] text-[14px] lg:text-[16px] font-bold mt-3">Published on : 23 July 2024</h3>
+            </div>
+            <div class="w-[140px]"><img src="./images/contact/news/news4.png" alt="" class="w-[140px]"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ  -->
+    <section class="max-w-[1340px] mx-auto px-5 lg:px-3 mt-[30px] lg:mt-[50px]">
+      <h1
+        class="text-[#1E1E1E] text-center text-[24px] md:text-[28px] lg:text-[32px] font-[800] font-rubik mt-3 lg:mt-5 mb-5">
+        FAQ</h1>
+      <p
+        class="lg:max-w-[900px] w-full mx-auto text-[#4A4A4A] text-center text-[14px] md:text-[16px] lg:text-[20px] font-rubik">
+        Got Questions? We've Got Answers. From service specifics to strategy deep-dives, find all the information you
+        need to make an informed decision</p>
+
+      <div>
+
+
+        <!-- FAQ Items -->
+        <div class="mt-16">
+          <!-- Item 1 -->
+          <div class=" border-b-2 ">
+            <button class="w-full text-left py-4 flex justify-between items-center">
+              <span class="text-[#1E1E1E] text-[16px] md:text-[18px] lg:text-[20px] font-semibold font-rubik">Lorem ipsum dolor sit
+                amet</span>
+              <svg class="w-6 h-6 transition-transform transform duration-300" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="hidden pt-4 pb-2">
+              <p class="lg:max-w-[1120px] w-full text-[#4A4A4A] text-[14px] md:text-[16px] lg:text-[18px] font-rubik">
+                Lorem ipsum dolor sit amet consectetur. Sed hendrerit pretium neque elementum turpis tincidunt
+                convallis imperdiet. Varius vel vitae libero in. Eu pretium commodo lectus euismod ac est sit
+                nunc. Commodo sapien ut tellus diam. Tristique sed viverra amet.
+              </p>
+            </div>
+          </div>
+
+           <!-- Item 2 -->
+           <div class=" border-b-2 ">
+            <button class="w-full text-left py-4 flex justify-between items-center">
+              <span class="text-[#1E1E1E] text-[16px] md:text-[18px] lg:text-[20px] font-semibold font-rubik">Lorem ipsum dolor sit
+                amet</span>
+              <svg class="w-6 h-6 transition-transform transform duration-300" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="hidden pt-4 pb-2">
+              <p class="lg:max-w-[1120px] w-full text-[#4A4A4A] text-[14px] md:text-[16px] lg:text-[18px] font-rubik">
+                Lorem ipsum dolor sit amet consectetur. Sed hendrerit pretium neque elementum turpis tincidunt
+                convallis imperdiet. Varius vel vitae libero in. Eu pretium commodo lectus euismod ac est sit
+                nunc. Commodo sapien ut tellus diam. Tristique sed viverra amet.
+              </p>
+            </div>
+          </div>
+
+           <!-- Item 3 -->
+           <div class=" border-b-2 ">
+            <button class="w-full text-left py-4 flex justify-between items-center">
+              <span class="text-[#1E1E1E] text-[16px] md:text-[18px] lg:text-[20px] font-semibold font-rubik">Lorem ipsum dolor sit
+                amet</span>
+              <svg class="w-6 h-6 transition-transform transform duration-300" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="hidden pt-4 pb-2">
+              <p class="lg:max-w-[1120px] w-full text-[#4A4A4A] text-[14px] md:text-[16px] lg:text-[18px] font-rubik">
+                Lorem ipsum dolor sit amet consectetur. Sed hendrerit pretium neque elementum turpis tincidunt
+                convallis imperdiet. Varius vel vitae libero in. Eu pretium commodo lectus euismod ac est sit
+                nunc. Commodo sapien ut tellus diam. Tristique sed viverra amet.
+              </p>
+            </div>
+          </div>
+           <!-- Item 4 -->
+           <div class=" border-b-2 ">
+            <button class="w-full text-left py-4 flex justify-between items-center">
+              <span class="text-[#1E1E1E] text-[16px] md:text-[18px] lg:text-[20px] font-semibold font-rubik">Lorem ipsum dolor sit
+                amet</span>
+              <svg class="w-6 h-6 transition-transform transform duration-300" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="hidden pt-4 pb-2">
+              <p class="lg:max-w-[1120px] w-full text-[#4A4A4A] text-[14px] md:text-[16px] lg:text-[18px] font-rubik">
+                Lorem ipsum dolor sit amet consectetur. Sed hendrerit pretium neque elementum turpis tincidunt
+                convallis imperdiet. Varius vel vitae libero in. Eu pretium commodo lectus euismod ac est sit
+                nunc. Commodo sapien ut tellus diam. Tristique sed viverra amet.
+              </p>
+            </div>
+          </div>
+           <!-- Item 5 -->
+           <div class=" border-b-2 ">
+            <button class="w-full text-left py-4 flex justify-between items-center">
+              <span class="text-[#1E1E1E] text-[16px] md:text-[18px] lg:text-[20px] font-semibold font-rubik">Lorem ipsum dolor sit
+                amet</span>
+              <svg class="w-6 h-6 transition-transform transform duration-300" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="hidden pt-4 pb-2">
+              <p class="lg:max-w-[1120px] w-full text-[#4A4A4A] text-[14px] md:text-[16px] lg:text-[18px] font-rubik">
+                Lorem ipsum dolor sit amet consectetur. Sed hendrerit pretium neque elementum turpis tincidunt
+                convallis imperdiet. Varius vel vitae libero in. Eu pretium commodo lectus euismod ac est sit
+                nunc. Commodo sapien ut tellus diam. Tristique sed viverra amet.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- footer  -->
+  <footer class="font-rubik relative mt-32">
+    <div class="absolute w-full -top-20 lg:-top-12">
+      <div class="max-w-[1340px] mx-auto lg:px-3">
+        <div style="box-shadow: 0px 10px 15px rgba(73, 77, 234, 0.25)"
+          class="flex flex-col gap-8 lg:flex-row lg:justify-between lg:items-center lg:mb-[-50px] bg-[#2B59FF] lg:rounded-[8px] px-8 py-10 lg:py-6">
+          <h3 class="text-[14px] lg:text-[24px] text-white font-bold text-center">
+            Would you like to publish your properties?
+          </h3>
+          <div class="flex justify-center">
+            <button
+              class="bg-white hover:bg-[#F2F2F2] text-[16px] font-semibold rounded-[8px] px-5 py-3 lg:px-5 lg:py-4">
+              Start Publishing
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-[#EAEAEA]">
+      <div class="max-w-[1340px] mx-auto flex flex-col lg:flex-row gap-7 lg:gap-24 pt-32 pb-32 px-5 lg:px-3">
+        <div class="space-y-4 lg:space-y-7">
+          <!-- <img src="./images/footer/logo.png" alt="" /> -->
+          <img src="./images/common/footer/logo.png" alt="" />
+          <div class="hidden lg:flex items-center gap-7">
+            <img src="./images/common/footer/fb.png" alt="" />
+            <img src="./images/common/footer/linkedin.png" alt="" />
+            <img src="./images/common/footer/x.png" alt="" />
+            <img src="./images/common/footer/insta.png" alt="" />
+          </div>
+          <p class="text-[#1E1E1E] text-[14px]">
+            Here we will add Tagline about your <br />
+            company. Could be anything that <br />
+            represents your company.
+          </p>
+          <p class="text-[#1E1E1E] text-[14px] font-semibold hidden lg:block">
+            Costa Nova@ 2024 All rights reserved
+          </p>
+        </div>
+        <div>
+          <h3 class="text-black text-[18px] font-bold">Pages</h3>
+          <div class="flex flex-col cursor-pointer mt-6">
+            <a href="index.html" class="mt-4 text-[15px]">Home</a>
+            <a href="#" class="mt-4 text-[15px]">About Us</a>
+            <a href="#" class="mt-4 text-[15px]">Blog</a>
+            <a href="#" class="mt-4 text-[15px]">Advertising</a>
+            <a href="#" class="mt-4 text-[15px]">Jobs at Costanova</a>
+            <a href="contact.html" class="mt-4 text-[15px]">Contact Us</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-black text-[18px] font-bold">Policies</h3>
+          <div class="flex flex-col cursor-pointer mt-6">
+            <a class="mt-4 text-[15px]">Privacy Policy</a>
+            <a class="mt-4 text-[15px]">Cookie Policy</a>
+            <a class="mt-4 text-[15px]">Legal Disclaimer</a>
+            <a class="mt-4 text-[15px]">Help</a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-black text-[18px] font-bold">Others</h3>
+          <div class="flex flex-col cursor-pointer mt-6">
+            <a class="mt-4 text-[15px]">Agency</a>
+            <a class="mt-4 text-[15px]">Register your agency</a>
+            <a class="mt-4 text-[15px]">Information for agencies</a>
+            <a class="mt-4 text-[15px]">Agency Login</a>
+            <a class="mt-4 text-[15px]">FAQ</a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center pb-16 block lg:hidden">
+        <div class="flex justify-center items-center gap-7">
+          <img src="./images/common/footer/fb.png" alt="" />
+          <img src="./images/common/footer/linkedin.png" alt="" />
+          <img src="./images/common/footer/x.png" alt="" />
+          <img src="./images/common/footer/insta.png" alt="" />
+        </div>
+        <p class="text-[#1E1E1E] text-[14px] font-semibold mt-10">
+          Costa Nova@ 2024 All rights reserved
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/additional.js"></script>
+</body>
+
+</html>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Costanova</title>
     <!-- custom css  -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./style/style.css" />
     <!-- tailwind cdn  -->
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
@@ -19,7 +19,7 @@
           <div class="max-w-[1340px] px-5 lg:px-3 mx-auto font-rubik">
             <div class="w-full h-[80px] flex justify-between items-center">
               <!-- Logo -->
-              <img id="logo" src="./images/banner/logo-white.png" alt="Logo" />
+              <a href="index.html"><img id="logo" src="./images/banner/logo-white.png" alt="Logo" /></a>
 
               <div class="md:hidden">
                 <i
@@ -100,20 +100,20 @@
                 class="w-[24px] h-[24px]"
                 src="./images/banner/akar-icons_search.svg"
                 alt="" />
-              <div class="">
-                <input
-                  type="text"
-                  placeholder="Search for property"
-                  class="placeholder:text-black border-none outline-none text-[14px]" />
-                <div
-                  class="flex justify-start items-center gap-2 text-[#4A4A4A] text-[10px] mt-[10px]">
-                  <span>Filter Name</span>
-                  <span class="w-1 h-1 rounded-full bg-[#4A4A4A]"></span>
-                  <span>Filter Name</span>
-                  <span class="w-1 h-1 rounded-full bg-[#4A4A4A]"></span>
-                  <span>Filter Name</span>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Search for property"
+                    class="placeholder:text-black border-none outline-none text-[14px]" />
+                  <div
+                    class="flex justify-start items-center gap-2 text-[#4A4A4A] text-[10px] mt-[10px]">
+                    <span class="filter-span cursor-pointer">Filter Name</span>
+                    <span class="w-1 h-1 rounded-full bg-[#4A4A4A] filter-circle"></span>
+                    <span class="filter-span cursor-pointer">Filter Name</span>
+                    <span class="w-1 h-1 rounded-full bg-[#4A4A4A] filter-circle"></span>
+                    <span class="filter-span cursor-pointer">Filter Name</span>
+                  </div>
                 </div>
-              </div>
             </div>
             <div
               class="w-full hidden bg-white h-full md:flex justify-between items-center p-1">
@@ -330,7 +330,7 @@
           <h4 class="text-[#1E1E1E] text-[16px] font-semibold">
             Your Latest Searches
           </h4>
-          <p class="text-[#2B59FF] text-[16px] font-semibold">Clear Searches</p>
+          <a href="#"><p class="text-[#2B59FF] text-[16px] font-semibold">Clear Searches</p></a>
         </div>
         <div class="flex gap-3 md:gap-8 items-center mt-6">
           <div class="border-r-2 border-[#E3DBDB] pr-3 lg:pr-8">
@@ -406,16 +406,20 @@
           <h3 class="text-[#1E1E1E] text-[14px] lg:text-[20px] font-semibold">
             Latest Listing for you in Valencia
           </h3>
-          <p
+          <a href="propertyList.html">
+            <p
             class="text-right lg:text-left text-[#2B59FF] text-[14px] lg:text-[20px] font-semibold">
             View All Properties ( 1232)
           </p>
+          </a>
         </div>
         <div
           class="max-w-[1340px] mx-auto flex flex-col lg:flex-row gap-10 lg:5 justify-between px-5 lg:px-3 mt-6">
           <!-- card-1  -->
           <div>
-            <img src="./images/latest/1.png" alt="" class="w-full" />
+            <a href="property-details.html">
+              <img src="./images/latest/1.png" alt="" class="w-full" />
+            </a>
             <div class="flex justify-between items-center mt-3">
               <h3 class="text-[18px] font-bold">Costa de Valencia</h3>
               <p class="text-[13px]">
@@ -457,7 +461,7 @@
 
           <!-- card-2  -->
           <div>
-            <img src="./images/latest/2.png" alt="" class="w-full" />
+            <a href="property-details.html"><img src="./images/latest/2.png" alt="" class="w-full" /></a>
             <div class="flex justify-between items-center mt-3">
               <h3 class="text-[18px] font-bold">Costa de Valencia</h3>
               <p class="text-[13px]">
@@ -499,7 +503,7 @@
 
           <!-- card-3  -->
           <div>
-            <img src="./images/latest/3.png" alt="" class="w-full" />
+            <a href="property-details.html"><img src="./images/latest/3.png" alt="" class="w-full" /></a>
             <div class="flex justify-between items-center mt-3">
               <h3 class="text-[18px] font-bold">Costa de Valencia</h3>
               <p class="text-[13px]">
@@ -633,12 +637,12 @@
           <div>
             <h3 class="text-black text-[18px] font-bold">Pages</h3>
             <div class="flex flex-col cursor-pointer mt-6">
-              <a class="mt-4 text-[15px]">Home</a>
-              <a class="mt-4 text-[15px]">About Us</a>
-              <a class="mt-4 text-[15px]">Blog</a>
-              <a class="mt-4 text-[15px]">Advertising</a>
-              <a class="mt-4 text-[15px]">Jobs at Costanova</a>
-              <a class="mt-4 text-[15px]">Contact Us</a>
+              <a href="index.html" class="mt-4 text-[15px]">Home</a>
+              <a href="#" class="mt-4 text-[15px]">About Us</a>
+              <a href="#" class="mt-4 text-[15px]">Blog</a>
+              <a href="#" class="mt-4 text-[15px]">Advertising</a>
+              <a href="#" class="mt-4 text-[15px]">Jobs at Costanova</a>
+              <a href="contact.html" class="mt-4 text-[15px]">Contact Us</a>
             </div>
           </div>
           <div>
@@ -677,6 +681,6 @@
     <script
       src="https://kit.fontawesome.com/722bf37857.js"
       crossorigin="anonymous"></script>
-    <script src="./script.js"></script>
+    <script src="./js/script.js"></script>
   </body>
 </html>

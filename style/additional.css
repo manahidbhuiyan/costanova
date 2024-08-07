@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+.font-rubik {
+  font-family: "Rubik", sans-serif;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.navbar.fixed {
+  position: fixed;
+}
+
+.resize-none{
+  resize: none;
+}
+
+@media only screen and (max-width: 395px) {
+  .black-logo {
+    width: 120px !important;
+  }
+  .plusIcon {
+    margin-right: 4px !important;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .black-logo {
+    width: 100px !important;
+  }
+
+  .bar-icon {
+    margin: 0 !important;
+  }
+  #radiusTypeToggle1 {
+    padding: 2px !important;
+  }
+}
+
+
+@media only screen and (max-width: 767.9px) {
+  .mobile {
+    position: absolute;
+  }
+  .menu-item {
+    position: absolute;
+    background-color: white;
+    top: 80px;
+    left: 15px;
+    padding: 5px;
+    width: 300px !important;
+  }
+}
